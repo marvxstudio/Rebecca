@@ -11,9 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
 
-abstract class BaseVMDialogFragment<V : ViewDataBinding, VM : ViewModel> : BaseKtDialogFragment(), ICreate, LifecycleOwner {
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseKtDialogFragment(), ICreate,
+        LifecycleOwner {
     //=========================  =================================
-    lateinit var ui: V
+    lateinit var ui: VDB
     lateinit var vm: VM
     //=========================  =================================
     abstract var mLayoutId: Int

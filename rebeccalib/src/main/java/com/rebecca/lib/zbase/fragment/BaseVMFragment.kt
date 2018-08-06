@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class BaseVMFragment<V : ViewDataBinding, VM : ViewModel> : BaseLazyFragment() {
-    lateinit var ui: V
+abstract class BaseVMFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseLazyFragment() {
+    lateinit var ui: VDB
     lateinit var vm: VM
     //=========================  =================================
 

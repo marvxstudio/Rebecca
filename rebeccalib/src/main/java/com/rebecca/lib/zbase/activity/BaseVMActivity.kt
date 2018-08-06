@@ -5,9 +5,9 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 
-abstract class BaseVMActivity<V : ViewDataBinding, VM : ViewModel> : BaseKtActivity() {
+abstract class BaseVMActivity<VDB : ViewDataBinding, VM : ViewModel> : BaseKtActivity() {
     //=========================  =================================
-    lateinit var ui: V
+    lateinit var ui: VDB
     lateinit var vm: VM
     //=========================  =================================
 
