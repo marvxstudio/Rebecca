@@ -13,7 +13,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-   
+
     dataBinding {
         enabled true
     }
@@ -24,7 +24,7 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     //compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':rebeccalib')
+    api project(':rebeccalib')
 }
 repositories {
     mavenCentral()

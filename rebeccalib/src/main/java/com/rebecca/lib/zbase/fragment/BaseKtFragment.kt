@@ -17,6 +17,7 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     //=========================  =================================
     var mRootView: View? = null
 
+    open var isTouchThrough = false
     //=========================  =================================
 
     //========================= init =================================
@@ -24,6 +25,9 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     abstract fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
 
     override fun onInit() {
+        if (isTouchThrough == false) {
+            mRootView?.setOnClickListener(null)
+        }
         onInitView()
         onInitData()
     }
@@ -44,6 +48,7 @@ abstract class BaseKtFragment : Fragment(), ICreate {
             val parent = mRootView?.getParent() as ViewGroup
             parent.removeView(mRootView)
         }
+
         return mRootView
     }
 

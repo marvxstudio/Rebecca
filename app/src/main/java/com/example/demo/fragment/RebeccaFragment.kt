@@ -10,18 +10,17 @@ class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>() {
     //=========================  =================================
 
     override var mLayoutId: Int = R.layout.rebecca_fragment
-    //=========================  =================================
 
-    override fun createVM(modelClass: Class<RebeccaVM>): RebeccaVM {
-        super.createVM(modelClass)
+    override fun onCreateVM(vm: RebeccaVM): RebeccaVM {
         val user = RebeccaUser() //kotlin 可自动检测类型 	等效于 val user: RebeccaUser = RebeccaUser()   Java: RebeccaUser user= new RebeccaUser()
         user.userName.postValue("Rebecca")
         user.userPassword.postValue("0000")
         user.userInfo.postValue("my name is Rebecca")
 
         vm.bean = user
-        return vm
+        return super.onCreateVM(vm)
     }
+
     //=========================  =================================
 
     override fun onInitView() {

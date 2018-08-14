@@ -10,15 +10,21 @@ import android.view.View
 import android.view.ViewGroup
 
 abstract class BaseVMFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseLazyFragment() {
+    //=========================  =================================
     lateinit var ui: VDB
     lateinit var vm: VM
-    //=========================  =================================
 
+    //=========================  =================================
     //=========================  =================================
 
     //=========================init  =================================
     open fun createVM(modelClass: Class<VM>): VM {
         vm = ViewModelProviders.of(this).get(modelClass)
+        return onCreateVM(vm)
+    }
+
+    open fun onCreateVM(vm: VM): VM {
+
         return vm
     }
 

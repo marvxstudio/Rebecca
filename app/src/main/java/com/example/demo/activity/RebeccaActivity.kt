@@ -14,6 +14,9 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
         RebeccaVM>() {
 
     //=========================  =================================
+
+
+    //=========================  =================================
     fun loadFragment() {
         var fm = supportFragmentManager
         var ft = fm.beginTransaction()
@@ -39,10 +42,8 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
             }
         }
     }
-    //========================= init =================================
 
-    override fun createVM(modelClass: Class<RebeccaVM>): RebeccaVM {
-        super.createVM(modelClass)
+    override fun onCreateVM(vm: RebeccaVM): RebeccaVM {
         vm.isLogin.postValue(true)
         val user = RebeccaUser() //kotlin 可自动检测类型 	等效于 val user: RebeccaUser = RebeccaUser()   Java: RebeccaUser user= new RebeccaUser()
         user.userName.postValue("Rebecca")
@@ -50,7 +51,8 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
         user.userInfo.postValue("my name is Rebecca")
 
         vm.bean = user
-        return vm
+
+        return super.onCreateVM(vm)
     }
 
     override fun onInitView() {
