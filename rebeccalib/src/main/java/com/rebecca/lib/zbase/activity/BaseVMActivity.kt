@@ -15,12 +15,10 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : ViewModel> : BaseKtAct
     //=========================init  =================================
     open fun createVM(modelClass: Class<VM>): VM {
         vm = ViewModelProviders.of(this).get(modelClass)
-
         return onCreateVM(vm)
     }
 
     open fun onCreateVM(vm: VM): VM {
-
         return vm
     }
 

@@ -17,10 +17,10 @@ class FunListAdapter : BaseRvAdapter<FunItemVM>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvVH<*, FunItemVM> {
         val vh: BaseRvVH<*, FunItemVM>
         when (viewType) {
-            HEADER -> {
+            VHType.HEADER -> {
                 vh = FunHeaderVH(parent)
             }
-            FOOTER -> {
+            VHType.FOOTER -> {
                 vh = FunFooterVH(parent)
             }
             else -> {

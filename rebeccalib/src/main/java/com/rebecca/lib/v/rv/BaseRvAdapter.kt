@@ -14,10 +14,10 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*, V
 
     //=====================  ==========================
     companion object VHType {
-        val ITEM = 0
-        val DIVIDER = 1
-        val HEADER = 2
-        val FOOTER = 3
+        const val ITEM = 0
+        const val DIVIDER = 1
+        const val HEADER = 2
+        const val FOOTER = 3
     }
 
     //=====================  ==========================

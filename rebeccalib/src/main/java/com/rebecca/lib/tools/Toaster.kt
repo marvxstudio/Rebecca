@@ -1,6 +1,7 @@
 package com.rebecca.lib.tools
 
 import android.content.Context
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 
@@ -18,10 +19,11 @@ class Toaster(var context: Context) {
 
     //=========================================================
 
-    fun show(msg: Any) {
+    fun show(msg: Any, gravity: Int = Gravity.BOTTOM, xOffset: Int = 0, yOffset: Int = 0) {
         if (isDebug) {
             toast.value.setText(msg.toString())
             toast.value.duration = duration
+            toast.value.setGravity(gravity, xOffset, yOffset)
             toast.value.show()
         }
     }

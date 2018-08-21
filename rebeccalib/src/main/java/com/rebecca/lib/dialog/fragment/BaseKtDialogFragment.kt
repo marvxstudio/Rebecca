@@ -1,5 +1,7 @@
 package com.rebecca.lib.dialog.fragment
 
+import android.content.DialogInterface
+import android.content.DialogInterface.OnDismissListener
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.View
@@ -29,5 +31,13 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onInit()
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
+        if (activity is OnDismissListener) {
+            val listener = activity as OnDismissListener
+            listener.onDismiss(dialog)
+        }
     }
 }

@@ -39,5 +39,8 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
         ui.clicker = this
         dialog.setTitle(vm.title.value)
     }
+
+
+
     //========================= main ==================================
 }
