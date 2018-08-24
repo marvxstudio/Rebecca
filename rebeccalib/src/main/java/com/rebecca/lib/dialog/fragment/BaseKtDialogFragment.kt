@@ -4,7 +4,9 @@ import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
 
 abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
@@ -28,9 +30,9 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     override fun onInitView() {
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         onInit()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onDismiss(dialog: DialogInterface?) {

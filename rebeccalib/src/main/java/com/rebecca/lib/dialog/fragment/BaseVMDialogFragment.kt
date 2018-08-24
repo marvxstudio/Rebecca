@@ -35,6 +35,7 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Bas
     //========================= main =================================
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = onCreateRootView(inflater, container, savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
 
         return mRootView
     }
