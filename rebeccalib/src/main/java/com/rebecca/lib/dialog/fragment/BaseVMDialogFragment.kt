@@ -26,17 +26,12 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Bas
     }
 
     //=========================  =================================
-    fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
         ui.setLifecycleOwner(this)
         return ui.root
     }
 
     //========================= main =================================
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mRootView = onCreateRootView(inflater, container, savedInstanceState)
-        super.onCreateView(inflater, container, savedInstanceState)
 
-        return mRootView
-    }
 }

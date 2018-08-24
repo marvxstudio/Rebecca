@@ -30,9 +30,15 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     override fun onInitView() {
     }
 
+    open fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return null
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mRootView = createRootView(inflater, container, savedInstanceState)
         onInit()
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return mRootView
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
