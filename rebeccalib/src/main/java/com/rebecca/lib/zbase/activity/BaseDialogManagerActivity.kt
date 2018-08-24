@@ -11,7 +11,7 @@ abstract class BaseDialogManagerActivity<VDB : ViewDataBinding, VM : ViewModel> 
         OnDismissListener {
 
     //====================================================
-    lateinit var dialogManager: DialogManager<DialogFragment>//  by lazy { DialogManager(supportFragmentManager) }
+    val dialogManager: DialogManager<DialogFragment> by lazy { DialogManager<DialogFragment>(supportFragmentManager) }
 
     //====================================================
 
