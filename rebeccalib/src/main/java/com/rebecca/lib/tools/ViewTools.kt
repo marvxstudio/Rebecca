@@ -21,6 +21,12 @@ class ViewTools {
             v.setBackgroundResource(resId)
         }
 
+        @BindingAdapter("android:background")
+        @JvmStatic
+        fun loadColor(v: View, resId: Int) {
+            v.setBackgroundColor(resId)
+        }
+
         //=============== inflater================
         fun inflate(layoutId: Int, vg: ViewGroup): View {
             return LayoutInflater.from(vg.context).inflate(layoutId, vg, false)

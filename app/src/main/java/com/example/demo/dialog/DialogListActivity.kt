@@ -12,7 +12,7 @@ class DialogListActivity(override var mLayoutId: Int = R.layout.dialog_list_acti
         DialogListVM>(), Clicker {
     //====================================================
     override fun onClick(v: View?) {
-        dialogManager.addDialog(MaterialDialogFragment())
+        dialogManager.add(MaterialDialogFragment())
     }
 
     //====================================================
@@ -20,9 +20,12 @@ class DialogListActivity(override var mLayoutId: Int = R.layout.dialog_list_acti
         super.onInitView()
         ui.clicker = this
         dialogManager = DialogManager(supportFragmentManager)
-        dialogManager.build()
-        for (k in 0..1) {
-            //dialogManager.addDialog(MaterialDialogFragment())
+        var each = arrayListOf(0, 1)
+        for (k in each) {
+
+            //LogTools.show(k)
+            dialogManager.add(MaterialDialogFragment())
+            //dialogManager.add(MaterialDialogFragment())
             //dialogManager.list.add(MaterialDialogFragment())
         }
     }

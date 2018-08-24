@@ -46,9 +46,9 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
     override fun onCreateVM(vm: RebeccaVM): RebeccaVM {
         vm.isLogin.postValue(true)
         val user = RebeccaUser() //kotlin 可自动检测类型 	等效于 val user: RebeccaUser = RebeccaUser()   Java: RebeccaUser user= new RebeccaUser()
-        user.userName.postValue("Rebecca")
+        user.userName.postValue("RebeccaApplication")
         user.userPassword.postValue("123456")
-        user.userInfo.postValue("my name is Rebecca")
+        user.userInfo.postValue("my name is RebeccaApplication")
 
         vm.bean = user
 

@@ -13,9 +13,9 @@ class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>() {
 
     override fun onCreateVM(vm: RebeccaVM): RebeccaVM {
         val user = RebeccaUser() //kotlin 可自动检测类型 	等效于 val user: RebeccaUser = RebeccaUser()   Java: RebeccaUser user= new RebeccaUser()
-        user.userName.postValue("Rebecca")
+        user.userName.postValue("RebeccaApplication")
         user.userPassword.postValue("0000")
-        user.userInfo.postValue("my name is Rebecca")
+        user.userInfo.postValue("my name is RebeccaApplication")
 
         vm.bean = user
         return super.onCreateVM(vm)
