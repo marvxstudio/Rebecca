@@ -6,11 +6,9 @@ import com.example.demo.R
 import com.example.demo.activity.Clicker
 import com.example.demo.databinding.FunItemVhBinding
 import com.example.demo.list.fragment.rv.FunItemVM
-import com.rebecca.lib.tools.ViewTools
 import com.rebecca.lib.v.rv.BaseRvVH
 
-class FunItemVH(var vg: ViewGroup) : BaseRvVH<FunItemVhBinding, FunItemVM>(ViewTools.inflate(R.layout.fun_item_vh, vg)),
-        Clicker {
+class FunItemVH(var vg: ViewGroup) : BaseRvVH<FunItemVhBinding, FunItemVM>(vg, R.layout.fun_item_vh), Clicker {
 //=============================================
 
     //=============================================
