@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
 
-abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseKtDialogFragment(), ICreate,
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseDMDialogFragment(), ICreate,
         LifecycleOwner {
     //=========================  =================================
     lateinit var ui: VDB

@@ -1,6 +1,6 @@
 package com.rebecca.lib.zbase.fragment
 
-abstract class BaseLazyFragment : BaseKtFragment() {
+abstract class BaseLazyFragment : BaseDMFragment() {
     //=========================  =================================
 
     //=========================  =================================

@@ -7,7 +7,6 @@ import com.example.demo.databinding.MaterialDialogFragmentBinding
 import com.example.demo.dialog.vm.MaterialDialogVM
 import com.rebecca.lib.dialog.fragment.BaseVMDialogFragment
 import com.rebecca.lib.tools.LogTools
-import com.rebecca.lib.zbase.activity.BaseDialogManagerActivity
 
 class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBinding, MaterialDialogVM>(), Clicker {
     //=========================  =================================
@@ -21,11 +20,7 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
                 vm.age = age.toString()
 
                 vm.info.postValue(" age:" + vm.age)
-                if (activity is BaseDialogManagerActivity<*, *>) {
-                    val act = activity as BaseDialogManagerActivity<*, *>
-                    val fm = act.dialogManager
-                    fm.add(MaterialDialogFragment())
-                }
+                dialogManager?.add(MaterialDialogFragment())
             }
         }
     }
