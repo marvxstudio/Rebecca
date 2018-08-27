@@ -24,7 +24,7 @@ class FunListAdapter : BaseRvAdapter<FunItemVM>() {
                 vh = FunFooterVH(parent)
             }
             else -> {
-                vh = FunItemVH(parent)
+                vh = FunItemVH(parent).set(this)
             }
         }
         return vh

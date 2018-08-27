@@ -19,7 +19,7 @@ class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
     //========================= init  =================================
 
     override fun onCreateVM(vm: FunListVM): FunListVM {
-        vm.createList(activity!!)
+        vm.createList(this)
         return super.onCreateVM(vm)
     }
 
