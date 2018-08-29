@@ -2,6 +2,7 @@ package com.rebecca.lib.zbase.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,16 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     open var isTouchThrough = false
     //=========================  =================================
 
+    fun show(ft: FragmentTransaction, isShow: Boolean): FragmentTransaction {
+        if (isShow) {
+            ft.show(this)
+        }
+        else {
+            ft.hide(this)
+        }
+        userVisibleHint = isShow
+        return ft
+    }
     //========================= init =================================
 
     abstract fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
