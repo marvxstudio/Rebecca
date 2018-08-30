@@ -4,12 +4,18 @@
         <variable
             name="vm"
             type="com.example.demo.vm.RebeccaVM"/>
+
+        <variable
+            name="clicker"
+            type="com.example.demo.activity.Clicker"/>
     </data>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@{vm.color}"
+        android:onClick="@{clicker::onClick}"
         android:orientation="vertical">
 
         <TextView
