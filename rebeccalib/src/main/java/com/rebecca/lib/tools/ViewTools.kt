@@ -28,6 +28,7 @@ class ViewTools {
         }
 
         //=============== inflater================
+        @JvmStatic
         fun inflate(layoutId: Int, vg: ViewGroup): View {
             return LayoutInflater.from(vg.context).inflate(layoutId, vg, false)
         }
