@@ -1,7 +1,7 @@
 package com.example.demo.bean
 
 import android.arch.lifecycle.MutableLiveData
-import com.rebecca.lib.zbase.vm.BaseBean
+import com.example.demo.BaseBean
 
 class RebeccaUser : BaseBean() {
     /*

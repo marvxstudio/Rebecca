@@ -24,7 +24,7 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
             }
         }
     }
-    //=========================  =================================
+    //========================= init =================================
 
     override fun createVM(modelClass: Class<MaterialDialogVM>): MaterialDialogVM {
         super.createVM(modelClass)
@@ -44,4 +44,5 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
     }
 
     //========================= main ==================================
+
 }
