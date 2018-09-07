@@ -48,7 +48,7 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
         user.userName.postValue("RebeccaApplication")
         user.userPassword.postValue("123456")
         user.userInfo.postValue("my name is RebeccaApplication")
-        vm.bean = user
+        vm.bean.postValue(user)
         return super.onCreateVM(vm)
     }
 

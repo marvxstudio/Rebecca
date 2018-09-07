@@ -37,7 +37,7 @@ class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>(), Cli
         user.userPassword.postValue("0000")
         user.userInfo.postValue("my name is RebeccaApplication")
 
-        vm.bean = user
+        vm.bean.postValue(user)
         vm.color.postValue(R.color.skyblue)
         return super.onCreateVM(vm)
     }
