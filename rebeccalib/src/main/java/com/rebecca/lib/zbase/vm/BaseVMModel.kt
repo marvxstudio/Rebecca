@@ -9,6 +9,9 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.create
 
 abstract class BaseVMModel {
+
+    open var mediaTypeParse = "application/json;charset=UTF-8"
+
     open fun <T : Any> sub(t: Observable<T>): Observable<T> {
 
         return t.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -16,7 +19,7 @@ abstract class BaseVMModel {
 
     open fun createBody(map: Map<String, Any>): RequestBody {
         val json: String = Gson().toJson(map)
-        val body: RequestBody = create(MediaType.parse("application/json;charset=UTF-8"), json)
+        val body: RequestBody = create(MediaType.parse(mediaTypeParse), json)
         return body
     }
 }
