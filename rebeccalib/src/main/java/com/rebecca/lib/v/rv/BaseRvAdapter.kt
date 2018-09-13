@@ -3,9 +3,10 @@ package com.rebecca.lib.v.rv
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.Adapter
 import android.support.v7.widget.RecyclerView.LayoutManager
 
-abstract class BaseRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*, VM>>() {
+abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
 
     //=====================  ==========================
     protected lateinit var list: ArrayList<VM>
@@ -21,9 +22,40 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*, V
     }
 
     //=====================  ==========================
-    fun update(list: ArrayList<VM>) {
+    fun update(list: ArrayList<VM>, isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
         this.list = list
-        notifyDataSetChanged()
+        if (isNotify) {
+            notifyDataSetChanged()
+        }
+        return this
+    }
+
+    fun clear(isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+        list.clear()
+        if (isNotify) {
+            notifyDataSetChanged()
+        }
+        return this
+    }
+
+    fun add(list: ArrayList<VM>, isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+        this.list.addAll(list)
+        if (isNotify) {
+            notifyDataSetChanged()
+        }
+        return this
+    }
+
+    fun add(vm: VM, index: Int = indexLast(), isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+        list.add(index, vm)
+        if (isNotify) {
+            notifyDataSetChanged()
+        }
+        return this
+    }
+
+    fun indexLast(offset: Int = 0): Int {
+        return list.size - offset
     }
 
     //===================== init ========================

@@ -9,7 +9,7 @@ import com.rebecca.lib.v.rv.BaseRvVM
 class FunItemVM(override var viewType: Int = BaseRvAdapter.ITEM) : BaseRvVM() {
 
     var name = MutableLiveData<String>()
-    var intent = MutableLiveData<Intent>()
+    lateinit var intent: Intent
 
     fun setName(name: String): FunItemVM {
         this.name.postValue(name)
@@ -17,11 +17,11 @@ class FunItemVM(override var viewType: Int = BaseRvAdapter.ITEM) : BaseRvVM() {
     }
 
     fun setIntent(i: Intent): FunItemVM {
-        intent.postValue(i)
+        intent = i
         return this
     }
 
     fun start(context: Context) {
-        context.startActivity(intent.value)
+        context.startActivity(intent)
     }
 }
