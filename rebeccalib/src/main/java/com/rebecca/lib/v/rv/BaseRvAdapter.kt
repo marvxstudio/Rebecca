@@ -22,7 +22,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
     }
 
     //=====================  ==========================
-    fun update(list: ArrayList<VM>, isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+    fun update(list: ArrayList<VM>, isNotify: Boolean = true): BaseRvAdapter<VM> {
         this.list = list
         if (isNotify) {
             notifyDataSetChanged()
@@ -30,7 +30,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun clear(isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+    fun clear(isNotify: Boolean = true): BaseRvAdapter<VM> {
         list.clear()
         if (isNotify) {
             notifyDataSetChanged()
@@ -38,7 +38,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun add(list: ArrayList<VM>, isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+    fun add(list: ArrayList<VM>, isNotify: Boolean = true): BaseRvAdapter<VM> {
         this.list.addAll(list)
         if (isNotify) {
             notifyDataSetChanged()
@@ -46,7 +46,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun add(vm: VM, index: Int = indexLast(), isNotify: Boolean = true): Adapter<BaseRvVH<*, VM>> {
+    fun add(vm: VM, index: Int = indexLast(), isNotify: Boolean = true): BaseRvAdapter<VM> {
         list.add(index, vm)
         if (isNotify) {
             notifyDataSetChanged()
