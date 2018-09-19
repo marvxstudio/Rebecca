@@ -21,7 +21,7 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     open var isTouchThrough = false
     //=========================  =================================
 
-    fun show(ft: FragmentTransaction, isShow: Boolean): FragmentTransaction {
+    open fun show(ft: FragmentTransaction, isShow: Boolean): FragmentTransaction {
         if (isShow) {
             ft.show(this)
         }
