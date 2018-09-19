@@ -2,7 +2,7 @@ package com.example.demo.bean
 
 import android.arch.lifecycle.MutableLiveData
 
-class RebeccaUser : BaseBean() {
+class RebeccaUser() {
     /*
     * MutableLiveData 替换普通类型
     */
