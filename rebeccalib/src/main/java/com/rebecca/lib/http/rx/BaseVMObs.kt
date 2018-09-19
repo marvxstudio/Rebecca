@@ -1,8 +1,9 @@
 package com.rebecca.lib.http.rx
 
+import com.rebecca.lib.http.bean.ICheck
 import io.reactivex.disposables.Disposable
 
-abstract class BaseVMObs<BOX : Any> : IVMObserver<BOX> {
+abstract class BaseVMObs<BOX : ICheck> : IVMObserver<BOX> {
 
     //===========================================
     lateinit var disposable: Disposable
@@ -21,8 +22,11 @@ abstract class BaseVMObs<BOX : Any> : IVMObserver<BOX> {
         this.boxRec = box
         super.onNext(box)
     }
-    //===========================================
 
+    //===========================================
+    override fun isRec(box: BOX): Boolean {
+        return box.isRec()
+    }
     //==================  =========================
 
 }

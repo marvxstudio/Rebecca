@@ -20,9 +20,9 @@ interface IVMObserver<BOX : Any> : Observer<BOX> {
         }
     }
 
-    fun isRec(b: BOX): Boolean
+    fun isRec(box: BOX): Boolean
 
-    fun onRec(b: BOX)
+    fun onRec(box: BOX)
     //================ complete ====================
     override fun onComplete() {
         if (isRecComplete()) {
