@@ -5,7 +5,7 @@ import android.content.Intent
 import com.example.demo.activity.RebeccaActivity
 import com.example.demo.dialog.DialogListActivity
 import com.example.demo.list.fragment.rv.FunItemVM
-import com.example.demo.rx.BaseObs
+import com.example.demo.http.rec.Obs
 import com.rebecca.lib.v.rv.BaseRvAdapter
 import com.rebecca.lib.zbase.vm.BaseVM
 
@@ -24,7 +24,7 @@ class FunListVM : BaseVM() {
     }
 
     fun k() {
-        val obs = object : BaseObs<FunListVM> {
+        val obs = object : Obs<FunListVM> {
             override fun onRec(b: ArrayList<FunListVM>) {
             }
 

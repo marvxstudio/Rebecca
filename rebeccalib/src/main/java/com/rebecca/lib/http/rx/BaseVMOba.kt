@@ -1,4 +1,4 @@
-package com.rebecca.lib.zbase.rx
+package com.rebecca.lib.http.rx
 
 import io.reactivex.Observable
 

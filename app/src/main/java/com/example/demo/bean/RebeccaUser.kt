@@ -1,7 +1,6 @@
 package com.example.demo.bean
 
 import android.arch.lifecycle.MutableLiveData
-import com.example.demo.BaseBean
 
 class RebeccaUser : BaseBean() {
     /*

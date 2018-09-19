@@ -1,4 +1,4 @@
-package com.example.demo.rx
+package com.example.demo.http.rec
 
 import com.rebecca.lib.zbase.vm.BaseVMModel
 
@@ -9,7 +9,7 @@ class ModelAd : BaseVMModel() {
 //        }
 //    }
 //
-//    fun getAds(obs: BaseObs<ArrayList<BaseBean>>, adType: Int) {//获取广告
+//    fun getAds(obs: Obs<ArrayList<BaseBean>>, adType: Int) {//获取广告
 //
 //        sub(k.getAds()).subscribe(obs)
 //    }
