@@ -13,7 +13,7 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : ViewModel> : BaseDMAct
     //=========================  =================================
 
     //=========================init  =================================
-    open fun createVM(modelClass: Class<VM>): VM {
+    fun createVM(modelClass: Class<VM>): VM {
         vm = ViewModelProviders.of(this).get(modelClass)
         return onCreateVM(vm)
     }

@@ -18,7 +18,7 @@ abstract class BaseVMFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseLazyF
     //=========================  =================================
 
     //=========================init  =================================
-    open fun createVM(modelClass: Class<VM>): VM {
+    fun createVM(modelClass: Class<VM>): VM {
         vm = ViewModelProviders.of(this).get(modelClass)
         return onCreateVM(vm)
     }

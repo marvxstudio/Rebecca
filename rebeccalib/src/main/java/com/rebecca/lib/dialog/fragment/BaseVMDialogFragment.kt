@@ -22,6 +22,11 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Bas
     //=========================  =================================
     open fun createVM(modelClass: Class<VM>): VM {
         vm = ViewModelProviders.of(this).get(modelClass)
+        return onCreateVM(vm)
+    }
+
+    open fun onCreateVM(vm: VM): VM {
+
         return vm
     }
 
