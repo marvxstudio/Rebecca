@@ -11,7 +11,7 @@ class FunListAdapter : BaseRvAdapter<FunItemVM>() {
     //=========================  =================================
 
     //=========================  =================================
-
+    
     //========================= main ==================================
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvVH<*, FunItemVM> {
@@ -29,4 +29,7 @@ class FunListAdapter : BaseRvAdapter<FunItemVM>() {
         }
         return vh
     }
+//    fun kl(){
+//        BaseVHType.hea
+//    }
 }

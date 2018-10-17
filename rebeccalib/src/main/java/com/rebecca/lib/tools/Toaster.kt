@@ -1,30 +1,28 @@
 package com.rebecca.lib.tools
 
 import android.content.Context
-import android.view.Gravity
-import android.view.View
 import android.widget.Toast
 
-class Toaster(var context: Context) {
+open class Toaster(var context: Context) {
 
-    var toast = lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+    val toast by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         Toast.makeText(context, "", duration)
     }
-    var toastView = lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
-        Toast(context)
-    }
+//    var toastView = lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+//        Toast(context)
+//    }
     var duration: Int = Toast.LENGTH_SHORT
 
     var isDebug: Boolean = true//默认参数isDebug=true 用于普通显示toast , 若作为调试用途 传入isDebug=BuildConfig.DEBUG 即可
 
     //=========================================================
 
-    fun show(msg: Any, gravity: Int = Gravity.BOTTOM, xOffset: Int = 0, yOffset: Int = 0) {
+    fun show(msg: Any, gravity: Int = toast.gravity, xOffset: Int = toast.xOffset, yOffset: Int = toast.yOffset) {
         if (isDebug) {
-            toast.value.setText(msg.toString())
-            toast.value.duration = duration
-            toast.value.setGravity(gravity, xOffset, yOffset)
-            toast.value.show()
+            toast.setText(msg.toString())
+            toast.duration = duration
+            toast.setGravity(gravity, xOffset, yOffset)
+            toast.show()
         }
     }
 
@@ -37,10 +35,10 @@ class Toaster(var context: Context) {
     }*/
 
     //============== set =======================
-    fun setView(v: View): Toaster {
-        toastView.value.view = v
-        return this
-    }
+//    fun setView(v: View): Toaster {
+//        toastView.value.view = v
+//        return this
+//    }
 
     fun setDuration(duration: Int): Toaster {
         this.duration = duration
