@@ -1,4 +1,4 @@
-import com.rebecca.lib.http.host.BaseHost
+package com.rebecca.lib.http.host
 
 abstract class BaseHoster(var type: HostType = HostType.RELEASE) {
 
