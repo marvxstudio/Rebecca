@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.demo.list.fragment.rv.FunItemVM"/>
+            type="com.example.demo.list.fragment.rv.base.BaseItemVM"/>
     </data>
     <LinearLayout
 

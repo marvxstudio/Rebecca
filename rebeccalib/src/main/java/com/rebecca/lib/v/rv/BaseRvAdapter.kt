@@ -14,12 +14,6 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
     //=====================  ==========================
 
     //=====================  ==========================
-    companion object VHType {
-        const val ITEM = 0
-        const val DIVIDER = 1
-        const val HEADER = 2
-        const val FOOTER = 3
-    }
 
     //=====================  ==========================
     fun update(list: ArrayList<VM>, isNotify: Boolean = true): BaseRvAdapter<VM> {

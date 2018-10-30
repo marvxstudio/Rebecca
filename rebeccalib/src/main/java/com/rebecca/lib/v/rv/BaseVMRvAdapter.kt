@@ -2,15 +2,21 @@ package com.rebecca.lib.v.rv
 
 import android.content.Context
 import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
 import android.databinding.ObservableList
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.Adapter
 
-abstract class BaseVMRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*, VM>>() {
+abstract class BaseVMRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
 
     //=====================  ==========================
     lateinit var mlist: ObservableArrayList<VM>
+    //=====================  ==========================
 
+    var mListItem = ObservableField<VM>()
+    var mHeader = ObservableField<VM>()
+    var mFooter = ObservableField<VM>()
     //=====================  ==========================
     open protected fun onInitList(list: ObservableArrayList<VM> = ObservableArrayList()) {
         mlist = list
@@ -39,39 +45,15 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*,
 
     //=====================  ==========================
 
-
     //=====================  ==========================
-    fun update(list: ObservableArrayList<VM>, isNotify: Boolean = true): BaseVMRvAdapter<VM> {
-        mlist.clear()
-        mlist.addAll(list)
-        if (isNotify) {
-            notifyDataSetChanged()
-        }
-        return this
+    fun updateHeader(vm: VM, isNotify: Boolean = true, position: Int = 0) {
     }
 
-    fun clear(isNotify: Boolean = true): BaseVMRvAdapter<VM> {
-        mlist.clear()
-        if (isNotify) {
-            notifyDataSetChanged()
-        }
-        return this
-    }
+    fun updateFooter(vm: VM, isNotify: Boolean = true, position: Int = mlist.size) {
 
-    fun add(list: ArrayList<VM>, isNotify: Boolean = true): BaseVMRvAdapter<VM> {
-        mlist.addAll(list)
-        if (isNotify) {
-            notifyDataSetChanged()
-        }
-        return this
-    }
+        if (mlist.isNotEmpty()) {
 
-    fun add(vm: VM, index: Int = getSizeOffset(), isNotify: Boolean = true): BaseVMRvAdapter<VM> {
-        mlist.add(index, vm)
-        if (isNotify) {
-            notifyDataSetChanged()
         }
-        return this
     }
 
     fun getSizeOffset(offset: Int = 0): Int {
@@ -80,6 +62,32 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*,
 
     fun getList(): ObservableArrayList<VM> {
         return mlist
+    }
+    //=====================  ==========================
+
+    fun update(list: ArrayList<VM>): BaseVMRvAdapter<VM> {
+        mlist.clear()
+        mlist.addAll(list)
+
+        return this
+    }
+
+    fun clear(): BaseVMRvAdapter<VM> {
+        mlist.clear()
+
+        return this
+    }
+
+    fun add(list: ArrayList<VM>): BaseVMRvAdapter<VM> {
+        mlist.addAll(list)
+
+        return this
+    }
+
+    fun add(vm: VM, index: Int = getSizeOffset()): BaseVMRvAdapter<VM> {
+        mlist.add(index, vm)
+
+        return this
     }
 
     //===================== init ========================
@@ -95,7 +103,6 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : RecyclerView.Adapter<BaseRvVH<*,
     init {
         onInitList()
     }
-    //===================== main ========================
 
     override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
         holder.updateVM(mlist.get(position))

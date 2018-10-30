@@ -5,7 +5,13 @@ import com.rebecca.lib.zbase.vm.BaseVM
 abstract class BaseRvVM : BaseVM() {
 
     //=========================  =================================
-    open var viewType: Int = BaseRvAdapter.ITEM
-    //=========================  =================================
+    object Index {
+        const val NONE = -1
+    }
 
+    var index: Int = Index.NONE
+    //=========================  =================================
+    open var viewType: Int = VHType.ITEM
+
+    //=========================  =================================
 }

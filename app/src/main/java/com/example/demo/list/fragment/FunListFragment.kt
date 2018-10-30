@@ -12,6 +12,7 @@ class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
 
     fun initRV() {
         val adapter = FunListAdapter()
+        vm.createList(activity!!, adapter)
         ui.rv.adapter = adapter
         adapter.updateLayoutManager(activity!!, ui.rv)
         adapter.update(vm.funList)
@@ -19,7 +20,7 @@ class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
     //========================= init  =================================
 
     override fun onCreateVM(vm: FunListVM): FunListVM {
-        vm.createList(activity!!)
+
         return super.onCreateVM(vm)
     }
 

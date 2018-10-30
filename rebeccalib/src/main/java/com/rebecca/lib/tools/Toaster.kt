@@ -8,17 +8,22 @@ open class Toaster(var context: Context) {
     val toast by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         Toast.makeText(context, "", duration)
     }
-//    var toastView = lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+    val gravity = toast.gravity
+    val offsetX = toast.xOffset
+    val offsetY = toast.yOffset
+    //    var toastView = lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
 //        Toast(context)
 //    }
     var duration: Int = Toast.LENGTH_SHORT
 
-    var isDebug: Boolean = true//默认参数isDebug=true 用于普通显示toast , 若作为调试用途 传入isDebug=BuildConfig.DEBUG 即可
+    var isDebug: Boolean = true
 
     //=========================================================
 
-    fun show(msg: Any, gravity: Int = toast.gravity, xOffset: Int = toast.xOffset, yOffset: Int = toast.yOffset) {
-        if (isDebug) {
+    fun show(msg: Any, isShow: Boolean = isDebug,
+             gravity: Int = this.gravity, xOffset: Int = offsetX, yOffset: Int = offsetY) {
+
+        if (isShow) {
             toast.setText(msg.toString())
             toast.duration = duration
             toast.setGravity(gravity, xOffset, yOffset)
