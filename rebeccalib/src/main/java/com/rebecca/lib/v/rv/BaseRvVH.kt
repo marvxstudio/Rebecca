@@ -12,10 +12,10 @@ abstract class BaseRvVH<VDB : ViewDataBinding, VM : BaseRvVM>(vg: ViewGroup, id:
     protected lateinit var vm: VM
     var ui: VDB
     //=========================  =================================
-    lateinit var adapter: BaseVMRvAdapter<VM>
+    lateinit var adapter: BaseKtAdapter<VM>
 
     //=========================  =================================
-    fun set(adapter: BaseVMRvAdapter<VM>): BaseRvVH<*, VM> {
+    fun set(adapter: BaseKtAdapter<VM>): BaseRvVH<*, VM> {
         this.adapter = adapter
         return this
     }

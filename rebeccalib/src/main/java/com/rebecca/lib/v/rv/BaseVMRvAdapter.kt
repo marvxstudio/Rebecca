@@ -1,14 +1,10 @@
 package com.rebecca.lib.v.rv
 
-import android.content.Context
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import android.databinding.ObservableList
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.Adapter
 
-abstract class BaseVMRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
+abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
 
     //=====================  ==========================
     lateinit var mlist: ObservableArrayList<VM>
@@ -56,7 +52,7 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         }
     }
 
-    fun getSizeOffset(offset: Int = 0): Int {
+    override fun getListSize(offset: Int): Int {
         return mlist.size + offset
     }
 
@@ -65,40 +61,32 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
     }
     //=====================  ==========================
 
-    fun update(list: ArrayList<VM>): BaseVMRvAdapter<VM> {
+    override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseVMRvAdapter<VM> {
         mlist.clear()
         mlist.addAll(list)
 
         return this
     }
 
-    fun clear(): BaseVMRvAdapter<VM> {
+    override fun clear(isNotify: Boolean): BaseVMRvAdapter<VM> {
         mlist.clear()
 
         return this
     }
 
-    fun add(list: ArrayList<VM>): BaseVMRvAdapter<VM> {
+    override fun add(list: ArrayList<VM>, isNotify: Boolean): BaseVMRvAdapter<VM> {
         mlist.addAll(list)
 
         return this
     }
 
-    fun add(vm: VM, index: Int = getSizeOffset()): BaseVMRvAdapter<VM> {
+    override fun add(vm: VM, index: Int, isNotify: Boolean): BaseVMRvAdapter<VM> {
         mlist.add(index, vm)
 
         return this
     }
 
     //===================== init ========================
-    /*
-     LinearLayoutManager 线性布局管理器
-     GridLayoutManager 表格布局管理器
-     StaggeredGridLayoutManager 瀑布流布局管理器
-     */
-    open fun updateLayoutManager(context: Context, rv: RecyclerView, manager: RecyclerView.LayoutManager = LinearLayoutManager(context)) {
-        rv.layoutManager = manager
-    }
 
     init {
         onInitList()

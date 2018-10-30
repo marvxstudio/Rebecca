@@ -11,7 +11,7 @@ class ItemAddVM : BaseItemVM() {
     //======================
     override fun onClick() {
         super.onClick()
-        adapter.add(RvVMBox().set(ItemAddVM().set(adapter).setName(name.get() ?: "")), adapter.getSizeOffset(-1))
+        adapter.add(RvVMBox().set(ItemAddVM().set(adapter).setName(name.get() ?: "")), adapter.getListSize(-1))
     }
 
     fun set(adapter: BaseVMRvAdapter<RvVMBox>): ItemAddVM {

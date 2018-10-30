@@ -1,12 +1,6 @@
 package com.rebecca.lib.v.rv
 
-import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.Adapter
-import android.support.v7.widget.RecyclerView.LayoutManager
-
-abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
+abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
 
     //=====================  ==========================
     protected lateinit var list: ArrayList<VM>
@@ -16,7 +10,8 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
     //=====================  ==========================
 
     //=====================  ==========================
-    fun update(list: ArrayList<VM>, isNotify: Boolean = true): BaseRvAdapter<VM> {
+
+    override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
         this.list = list
         if (isNotify) {
             notifyDataSetChanged()
@@ -24,7 +19,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun clear(isNotify: Boolean = true): BaseRvAdapter<VM> {
+    override fun clear(isNotify: Boolean): BaseRvAdapter<VM> {
         list.clear()
         if (isNotify) {
             notifyDataSetChanged()
@@ -32,7 +27,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun add(list: ArrayList<VM>, isNotify: Boolean = true): BaseRvAdapter<VM> {
+    override fun add(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
         this.list.addAll(list)
         if (isNotify) {
             notifyDataSetChanged()
@@ -40,7 +35,7 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun add(vm: VM, index: Int = indexLast(), isNotify: Boolean = true): BaseRvAdapter<VM> {
+    override fun add(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
         list.add(index, vm)
         if (isNotify) {
             notifyDataSetChanged()
@@ -48,19 +43,12 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
         return this
     }
 
-    fun indexLast(offset: Int = 0): Int {
-        return list.size - offset
+    override fun getListSize(offset: Int): Int {
+        return list.size + offset
     }
 
     //===================== init ========================
-    /*
-     LinearLayoutManager 线性布局管理器
-     GridLayoutManager 表格布局管理器
-     StaggeredGridLayoutManager 瀑布流布局管理器
-     */
-    open fun updateLayoutManager(context: Context, rv: RecyclerView, manager: LayoutManager = LinearLayoutManager(context)) {
-        rv.layoutManager = manager
-    }
+
     //===================== main ========================
 
     override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
