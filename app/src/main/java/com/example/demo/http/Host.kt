@@ -2,7 +2,7 @@ package com.example.demo.http
 
 import com.rebecca.lib.http.host.BaseHost
 
-class Host(override var ip: String = IP.release, override var port: String = "80") : BaseHost() {
+class Host : BaseHost(IP.release) {
 
     private object IP {
         const val release = "192.168.0.1"

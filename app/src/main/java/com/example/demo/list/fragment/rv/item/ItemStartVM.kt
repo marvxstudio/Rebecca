@@ -1,24 +1,19 @@
 package com.example.demo.list.fragment.rv.item
 
-import android.content.Context
-import android.content.Intent
 import com.example.demo.list.fragment.rv.base.BaseItemVM
+import com.rebecca.lib.router.RouterClient
 
 class ItemStartVM : BaseItemVM() {
 
-    lateinit var intent: Intent
+    lateinit var path: String
 
     override fun onClick() {
         super.onClick()
-
+        RouterClient.start(path)
     }
 
-    fun setIntent(i: Intent): ItemStartVM {
-        intent = i
+    fun setPath(path: String): ItemStartVM {
+        this.path = path
         return this
-    }
-
-    fun start(context: Context) {
-        context.startActivity(intent)
     }
 }

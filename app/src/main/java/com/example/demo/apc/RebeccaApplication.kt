@@ -1,10 +1,9 @@
 package com.example.demo.apc
 
-import android.app.Application
+import com.rebecca.lib.zbase.application.BaseApplication
 
-class RebeccaApplication : Application() {
+class RebeccaApplication : BaseApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-    }
+    override var openRouter: Boolean = true
+    override var openRouterDebug: Boolean = true
 }

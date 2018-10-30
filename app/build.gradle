@@ -3,11 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.alibaba.arouter'
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -19,20 +21,23 @@ android {
     }
 }
 
-
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+    generateStubs = true
+}
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     //compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api project(':rebeccalib')
-    implementation "com.android.support:appcompat-v7:$tool_version"
-    implementation "com.android.support:recyclerview-v7:$tool_version"
-    implementation "com.android.support:cardview-v7:$tool_version"
-    implementation "com.android.support:support-v13:$tool_version"
-    implementation "com.android.support:design:$tool_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+//    implementation "com.android.support:appcompat-v7:$tool_version"
+//    implementation "com.android.support:recyclerview-v7:$tool_version"
+//    implementation "com.android.support:cardview-v7:$tool_version"
+//    implementation "com.android.support:support-v13:$tool_version"
+//    implementation "com.android.support:design:$tool_version"
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    kapt 'com.alibaba:arouter-compiler:1.2.1'
+}
 
-}
-repositories {
-    mavenCentral()
-}
