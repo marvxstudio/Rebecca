@@ -8,13 +8,16 @@ import android.support.v7.widget.RecyclerView.Adapter
 abstract class BaseKtAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
 
     //================================================
-    abstract fun update(list: ArrayList<VM>, isNotify: Boolean = false): BaseKtAdapter<VM>
+    open var openAutoNotify = true
 
-    abstract fun clear(isNotify: Boolean = false): BaseKtAdapter<VM>
+    //================================================
+    abstract fun update(list: ArrayList<VM>, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
-    abstract fun add(list: ArrayList<VM>, isNotify: Boolean = false): BaseKtAdapter<VM>
+    abstract fun clear(isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
-    abstract fun add(vm: VM, index: Int = getListSize(), isNotify: Boolean = false): BaseKtAdapter<VM>
+    abstract fun add(list: ArrayList<VM>, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
+
+    abstract fun add(vm: VM, index: Int = getListSize(), isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
     abstract fun getListSize(offset: Int = 0): Int
     //================================================
