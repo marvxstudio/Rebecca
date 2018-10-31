@@ -3,7 +3,7 @@ package com.rebecca.lib.zbase.application
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 
-open class BaseApplication : Application() {
+open class BaseVMApplication : Application() {
 
     //=========================  =================================
     open var openRouter = false
