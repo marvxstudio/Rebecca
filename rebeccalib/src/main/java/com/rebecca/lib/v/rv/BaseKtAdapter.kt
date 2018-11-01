@@ -21,6 +21,8 @@ abstract class BaseKtAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
 
     abstract fun set(vm: VM, index: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
+    abstract fun set(vm: VM, index: Int, type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
+
     abstract fun removeType(type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
     abstract fun remove(index: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>

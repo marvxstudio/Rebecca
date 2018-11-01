@@ -51,6 +51,9 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
         return this
     }
 
+    override fun set(vm: VM, index: Int, type: Int, isNotify: Boolean): BaseKtAdapter<VM> {
+        return this
+    }
     override fun removeType(type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
         return this
     }
