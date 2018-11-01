@@ -86,6 +86,17 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
         return this
     }
 
+    override fun remove(index: Int, isNotify: Boolean): BaseVMRvAdapter<VM> {
+        return this
+    }
+
+    override fun set(vm: VM, index: Int, isNotify: Boolean): BaseVMRvAdapter<VM> {
+        return this
+    }
+
+    override fun removeType(type: Int, isNotify: Boolean): BaseVMRvAdapter<VM> {
+        return this
+    }
     //===================== init ========================
 
     init {
