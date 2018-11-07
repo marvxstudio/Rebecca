@@ -10,12 +10,16 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     val dialogList: ArrayList<DF> by lazy { ArrayList<DF>() }
 
     //=================================================
+    private var isLive = true
+    //=================================================
 
     var mDialog: DF? = null
     //=================================================
     fun add(dialog: DF) {
-        onAddDialog(dialog)
-        createDialog()
+        if (isLive) {
+            onAddDialog(dialog)
+            createDialog()
+        }
     }
 
     protected open fun onAddDialog(dialog: DF) {
@@ -37,7 +41,10 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     }
 
     //================================
-
+    fun destroy() {
+        isLive = false
+        dialogList.clear()
+    }
     //================================
 
 }
