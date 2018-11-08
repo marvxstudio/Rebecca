@@ -4,7 +4,7 @@ import android.util.Log
 
 object LogTools {
 
-    var isDebug = true
+    var isDebug = false
     var mTag: String = "++++"
 
     fun show(msg: String, debug: Boolean = isDebug, tag: String = mTag) {
