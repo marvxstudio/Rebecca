@@ -4,7 +4,7 @@ abstract class BaseCtr {
 
     val mTag = javaClass.simpleName
 
-    var isDebug = false
+    open var isDebug = false
 
     //==============================
     fun setDebug(debug: Boolean): BaseCtr {
