@@ -56,10 +56,12 @@ abstract class BaseKtFragment : Fragment(), ICreate {
             mRootView = onCreateRootView(inflater, container, savedInstanceState)
         }
         else {
-            val parent = mRootView?.getParent() as ViewGroup
-            parent.removeView(mRootView)
+            val viewparent = mRootView?.parent
+            if (viewparent != null && viewparent is ViewGroup) {
+                val vg: ViewGroup? = mRootView?.getParent() as ViewGroup
+                vg?.removeView(mRootView)
+            }
         }
-
         return mRootView
     }
 
