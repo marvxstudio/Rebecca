@@ -9,13 +9,16 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
     //=====================  ==========================
     lateinit var mlist: ObservableArrayList<VM>
     //=====================  ==========================
-    open var openHasStableIds: Boolean = false
     //=====================  ==========================
 
     var mListItem = ObservableField<VM>()
     var mHeader = ObservableField<VM>()
     var mFooter = ObservableField<VM>()
     //=====================  ==========================
+    open protected fun onInit() {
+        onInitList()
+    }
+
     open protected fun onInitList(list: ObservableArrayList<VM> = ObservableArrayList()) {
         mlist = list
         mlist.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableArrayList<VM>>() {
@@ -39,9 +42,7 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
                 notifyItemRangeChanged(positionStart, itemCount)
             }
         })
-        setHasStableIds(openHasStableIds)
     }
-
     //=====================  ==========================
 
     //=====================  ==========================
@@ -107,7 +108,7 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
     //===================== init ========================
 
     init {
-        onInitList()
+        onInit()
     }
 
     override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
@@ -124,7 +125,7 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
 
     override fun getItemId(position: Int): Long {
         var index = super.getItemId(position)
-        if (openHasStableIds) {
+        if (hasStableIds()) {
             index = position.toLong()
         }
         return index
