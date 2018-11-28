@@ -21,7 +21,7 @@ class FunItemVH(var vg: ViewGroup) : BaseRvVH<FunItemVhBinding, RvVMBox>(vg, R.l
                 vm.vmItem.setName(vm.vmItem.name.get() + "1")
                 //adapter.add(RvVMBox().set(ItemStartVM()), isNotify = false)
                 //vm.name.set(vm.name.get() + 1)
-                //LogTools.show("list size= " + adapter.mlist.size + " , " + vm.name.get())
+                //Loger.show("list size= " + adapter.mlist.size + " , " + vm.name.get())
             }
         }
     }

@@ -2,7 +2,7 @@ package com.rebecca.lib.tools
 
 import android.util.Log
 
-object LogTools {
+object Loger {
 
     var isDebug = true
     var mTag: String = "++++"

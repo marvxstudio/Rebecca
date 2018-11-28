@@ -6,7 +6,7 @@ import com.example.demo.activity.Clicker
 import com.example.demo.databinding.MaterialDialogFragmentBinding
 import com.example.demo.dialog.vm.MaterialDialogVM
 import com.rebecca.lib.dialog.fragment.BaseVMDialogFragment
-import com.rebecca.lib.tools.LogTools
+import com.rebecca.lib.tools.Loger
 
 class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBinding, MaterialDialogVM>(), Clicker {
     //=========================  =================================
@@ -40,7 +40,7 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
         ui.vm = createVM(MaterialDialogVM::class.java)
         ui.clicker = this
         dialog.setTitle(vm.title.value)
-        LogTools.show("dialog init")
+        Loger.show("dialog init")
     }
 
     //========================= main ==================================

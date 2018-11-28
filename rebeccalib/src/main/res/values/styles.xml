@@ -7,4 +7,12 @@
         <item name="android:gravity">center</item>
 
     </style>
+
+    <style name="click_wave">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="click_wave_borderless">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
 </resources>

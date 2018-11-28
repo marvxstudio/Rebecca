@@ -9,6 +9,8 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
     //=====================  ==========================
     lateinit var mlist: ObservableArrayList<VM>
     //=====================  ==========================
+    open var openHasStableIds: Boolean = false
+    //=====================  ==========================
 
     var mListItem = ObservableField<VM>()
     var mHeader = ObservableField<VM>()
@@ -37,6 +39,7 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
                 notifyItemRangeChanged(positionStart, itemCount)
             }
         })
+        setHasStableIds(openHasStableIds)
     }
 
     //=====================  ==========================
@@ -117,5 +120,13 @@ abstract class BaseVMRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
 
     override fun getItemCount(): Int {
         return mlist.size
+    }
+
+    override fun getItemId(position: Int): Long {
+        var index = super.getItemId(position)
+        if (openHasStableIds) {
+            index = position.toLong()
+        }
+        return index
     }
 }
