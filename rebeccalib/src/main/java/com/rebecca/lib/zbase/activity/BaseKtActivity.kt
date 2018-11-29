@@ -10,7 +10,7 @@ abstract class BaseKtActivity : AppCompatActivity(), ICreate {
     //=========================  =================================
     val mTag = javaClass.simpleName
 
-    var isDebug = false
+    open var isDebug = false
     //=========================  =================================
 
     override fun onInit() {

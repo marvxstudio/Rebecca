@@ -14,7 +14,7 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     //=========================  =================================
     val mTag = javaClass.simpleName
 
-    var isDebug = false
+    open var isDebug = false
     //=========================  =================================
     var mRootView: View? = null
 

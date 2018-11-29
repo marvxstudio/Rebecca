@@ -12,7 +12,7 @@ import com.rebecca.lib.zbase.ICreate
 abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     //=========================  =================================
     val mTag = javaClass.simpleName
-    var isDebug = false
+    open var isDebug = false
     //=========================  =================================
     var mRootView: View? = null
 
