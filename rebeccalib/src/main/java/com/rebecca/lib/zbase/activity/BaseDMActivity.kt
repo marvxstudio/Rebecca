@@ -19,6 +19,11 @@ abstract class BaseDMActivity : BaseKtActivity(), OnDismissListener {
         dialogManager.onDismiss(dialog)
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialogManager.start()
+    }
+
     override fun onDestroy() {
         dialogManager.destroy()
         super.onDestroy()

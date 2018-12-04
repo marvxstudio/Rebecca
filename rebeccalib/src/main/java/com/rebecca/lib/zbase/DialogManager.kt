@@ -15,6 +15,8 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
 
     var mDialog: DF? = null
     //=================================================
+
+    //=================================================
     fun add(dialog: DF) {
         if (isLive) {
             onAddDialog(dialog)
@@ -27,11 +29,18 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     }
 
     protected fun createDialog() {
-        if (mDialog == null && dialogList.size > 0) {
+        if (isLive && mDialog == null && dialogList.size > 0) {
 
             mDialog = dialogList.get(0)
             dialogList.removeAt(0)
-            mDialog?.show(fm, "dialog")
+
+            try {
+                mDialog?.show(fm, "dialog")
+            }
+            catch (e: Exception) {
+                mDialog = null
+                createDialog()
+            }
         }
     }
 
@@ -41,9 +50,18 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     }
 
     //================================
+    fun start() {
+        isLive = true
+        createDialog()
+    }
+
     fun destroy() {
         isLive = false
         dialogList.clear()
+        val dialog = mDialog
+        if (dialog != null && dialog.isAdded) {
+            dialog.dismiss()
+        }
     }
     //================================
 
