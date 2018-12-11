@@ -3,15 +3,19 @@ package com.rebecca.lib.zbase.activity
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.support.v4.app.DialogFragment
+import com.rebecca.lib.dialog.IDialogManager
 import com.rebecca.lib.zbase.DialogManager
 
 abstract class BaseDMActivity : BaseKtActivity(), OnDismissListener {
 
     //====================================================
-    val dialogManager: DialogManager<DialogFragment> by lazy { DialogManager<DialogFragment>(supportFragmentManager) }
+    val dialogManager: IDialogManager<DialogFragment> by lazy { onCreateDialogManager() }
 
     //====================================================
 
+    open fun onCreateDialogManager(): IDialogManager<DialogFragment> {
+        return DialogManager(supportFragmentManager)
+    }
     //======================= init =============================
 
     //======================= main =============================
@@ -21,11 +25,11 @@ abstract class BaseDMActivity : BaseKtActivity(), OnDismissListener {
 
     override fun onStart() {
         super.onStart()
-        dialogManager.start()
+        dialogManager.onStart()
     }
 
     override fun onDestroy() {
-        dialogManager.destroy()
+        dialogManager.onDestroy()
         super.onDestroy()
     }
 }

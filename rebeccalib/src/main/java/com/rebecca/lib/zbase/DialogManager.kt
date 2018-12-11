@@ -4,8 +4,9 @@ import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
+import com.rebecca.lib.dialog.IDialogManager
 
-open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismissListener {
+open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismissListener, IDialogManager<DF> {
 
     val dialogList: ArrayList<DF> by lazy { ArrayList<DF>() }
 
@@ -17,10 +18,10 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     //=================================================
 
     //=================================================
-    fun add(dialog: DF) {
+    override fun add(dialog: DF) {
         if (isLive) {
             onAddDialog(dialog)
-            createDialog()
+            output()
         }
     }
 
@@ -28,8 +29,8 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
         dialogList.add(dialog)
     }
 
-    protected fun createDialog() {
-        if (isLive && mDialog == null && dialogList.size > 0) {
+    override fun output() {
+        if (isLive && mDialog == null && dialogList.isNotEmpty()) {
 
             mDialog = dialogList.get(0)
             dialogList.removeAt(0)
@@ -39,23 +40,22 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
             }
             catch (e: Exception) {
                 mDialog = null
-                createDialog()
+                output()
             }
         }
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
         mDialog = null
-        createDialog()
+        output()
     }
 
-    //================================
-    fun start() {
+    override fun onStart() {
         isLive = true
-        createDialog()
+        output()
     }
 
-    fun destroy() {
+    override fun onDestroy() {
         isLive = false
         dialogList.clear()
         val dialog = mDialog
