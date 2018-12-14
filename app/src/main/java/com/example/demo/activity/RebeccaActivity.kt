@@ -57,7 +57,7 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
 
     override fun onInitView() {
         super.onInitView()
-        ui.vm = createVM(RebeccaVM::class.java)
+        //ui.vm = createVM(RebeccaVM::class.java)
         ui.clicker = rebeccaClicker
         loadFragment()
     }

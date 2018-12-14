@@ -58,10 +58,10 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     override fun onDestroy() {
         isLive = false
         dialogList.clear()
-        val dialog = mDialog
-        if (dialog != null && dialog.isAdded) {
-            dialog.dismiss()
-        }
+//        val dialog = mDialog
+//        if (dialog != null && dialog.isAdded) {
+//            dialog.dismiss()
+//        }
     }
     //================================
 

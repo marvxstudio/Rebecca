@@ -1,11 +1,11 @@
 package com.rebecca.lib.zbase.activity
 
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
+import com.rebecca.lib.zbase.vm.BaseVM
 
-abstract class BaseVMActivity<VDB : ViewDataBinding, VM : ViewModel> : BaseDMActivity() {
+abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
     //=========================  =================================
     lateinit var ui: VDB
     lateinit var vm: VM
@@ -28,5 +28,10 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : ViewModel> : BaseDMAct
         super.onInit()
     }
 
-    //=========================main ==================================
+    override fun onDestroy() {
+        if(::vm.isInitialized){
+            vm.onDestroy()
+        }
+        super.onDestroy()
+    }
 }
