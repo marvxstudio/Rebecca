@@ -46,7 +46,7 @@ class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>(), Cli
 
     override fun onInitView() {
         super.onInitView()
-        ui.vm = vm//createVM(RebeccaVM::class.java)  正常流程执行createVM方法获取Viewmodel
+        ui.vm = createVM(RebeccaVM::class.java)
         ui.clicker = this
     }
     //========================= main ==================================

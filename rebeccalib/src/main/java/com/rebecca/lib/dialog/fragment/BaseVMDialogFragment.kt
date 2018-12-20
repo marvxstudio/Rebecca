@@ -1,7 +1,6 @@
 package com.rebecca.lib.dialog.fragment
 
 import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -10,8 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
+import com.rebecca.lib.zbase.vm.BaseVM
 
-abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseDMDialogFragment(), ICreate,
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate,
         LifecycleOwner {
     //=========================  =================================
     lateinit var ui: VDB
@@ -30,6 +30,12 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Bas
         return vm
     }
 
+    open fun onDestroyVM() {
+        if (::vm.isInitialized) {
+            vm.onDestroy()
+        }
+    }
+
     //=========================  =================================
     override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
@@ -37,6 +43,8 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Bas
         return ui.root
     }
 
-    //========================= main =================================
-
+    override fun onDestroy() {
+        onDestroyVM()
+        super.onDestroy()
+    }
 }

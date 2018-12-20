@@ -22,6 +22,12 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
         return vm
     }
 
+    open fun onDestroyVM() {
+        if (::vm.isInitialized) {
+            vm.onDestroy()
+        }
+    }
+
     override fun onInit() {
         ui = DataBindingUtil.setContentView(this, mLayoutId)
         ui.setLifecycleOwner(this)
@@ -29,9 +35,7 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
     }
 
     override fun onDestroy() {
-        if(::vm.isInitialized){
-            vm.onDestroy()
-        }
+        onDestroyVM()
         super.onDestroy()
     }
 }

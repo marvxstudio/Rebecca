@@ -1,6 +1,5 @@
 package com.rebecca.lib.zbase.fragment
 
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -8,8 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rebecca.lib.zbase.vm.BaseVM
 
-abstract class BaseVMFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseLazyFragment() {
+abstract class BaseVMFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseLazyFragment() {
     //=========================  =================================
     lateinit var ui: VDB
     lateinit var vm: VM
@@ -28,11 +28,20 @@ abstract class BaseVMFragment<VDB : ViewDataBinding, VM : ViewModel> : BaseLazyF
         return vm
     }
 
+    open fun onDestroyVM() {
+        if (::vm.isInitialized) {
+            vm.onDestroy()
+        }
+    }
+
     override fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
         ui.setLifecycleOwner(this)
         return ui.root
     }
 
-    //=========================main ==================================
+    override fun onDestroy() {
+        onDestroyVM()
+        super.onDestroy()
+    }
 }
