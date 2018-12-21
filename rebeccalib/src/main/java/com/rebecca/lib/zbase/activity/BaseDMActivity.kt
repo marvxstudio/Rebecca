@@ -4,7 +4,7 @@ import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.support.v4.app.DialogFragment
 import com.rebecca.lib.dialog.IDialogManager
-import com.rebecca.lib.zbase.DialogManager
+import com.rebecca.lib.dialog.manager.BaseDialogManager
 
 abstract class BaseDMActivity : BaseKtActivity(), OnDismissListener {
 
@@ -14,7 +14,7 @@ abstract class BaseDMActivity : BaseKtActivity(), OnDismissListener {
     //====================================================
 
     open fun onCreateDialogManager(): IDialogManager<DialogFragment> {
-        return DialogManager(supportFragmentManager)
+        return BaseDialogManager(supportFragmentManager)
     }
     //======================= init =============================
 

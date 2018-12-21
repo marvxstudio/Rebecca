@@ -1,4 +1,4 @@
-package com.rebecca.lib.zbase
+package com.rebecca.lib.dialog.manager
 
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
@@ -6,7 +6,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
 import com.rebecca.lib.dialog.IDialogManager
 
-open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismissListener, IDialogManager<DF> {
+open class BaseDialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismissListener, IDialogManager<DF> {
 
     val dialogList: ArrayList<DF> by lazy { ArrayList<DF>() }
 
@@ -58,10 +58,6 @@ open class DialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismi
     override fun onDestroy() {
         isLive = false
         dialogList.clear()
-//        val dialog = mDialog
-//        if (dialog != null && dialog.isAdded) {
-//            dialog.dismiss()
-//        }
     }
     //================================
 

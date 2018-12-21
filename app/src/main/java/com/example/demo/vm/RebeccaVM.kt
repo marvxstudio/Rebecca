@@ -13,6 +13,7 @@ class RebeccaVM : BaseVM() {
     val color = MutableLiveData<Int>()
     //===================================================
     fun showBean() {
+
 //        Log.d(mTag, mTag + " : \r\n" + bean.userName.value + "\r\n" + bean.userPassword.value + "\r\n" + bean.userInfo
 //                .value)
     }

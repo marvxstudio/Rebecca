@@ -2,6 +2,7 @@ package com.rebecca.lib.dialog.fragment
 
 import android.support.v4.app.DialogFragment
 import com.rebecca.lib.dialog.IDialogManager
+import com.rebecca.lib.dialog.fragment.base.BaseKtDialogFragment
 import com.rebecca.lib.zbase.activity.BaseDMActivity
 
 abstract class BaseDMDialogFragment : BaseKtDialogFragment() {

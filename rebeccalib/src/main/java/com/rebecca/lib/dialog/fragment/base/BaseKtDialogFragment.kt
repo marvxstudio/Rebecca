@@ -1,4 +1,4 @@
-package com.rebecca.lib.dialog.fragment
+package com.rebecca.lib.dialog.fragment.base
 
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
@@ -16,7 +16,6 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     //=========================  =================================
     var mRootView: View? = null
 
-    //=========================  =================================
 
     //========================= init  =================================
     override fun onInit() {
@@ -48,4 +47,7 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
             listener.onDismiss(dialog)
         }
     }
+
+    //=========================  =================================
+
 }

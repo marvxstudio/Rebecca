@@ -1,14 +1,18 @@
 package com.example.demo.activity
 
+import android.content.DialogInterface
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.demo.R
 import com.example.demo.bean.RebeccaUser
 import com.example.demo.databinding.RebeccaActivityBinding
-import com.example.demo.dialog.fragment.MaterialDialogFragment
 import com.example.demo.fragment.RebeccaFragment
 import com.example.demo.router.RouterUrl
 import com.example.demo.vm.RebeccaVM
+import com.rebecca.lib.dialog.IDialogCanceClicker
+import com.rebecca.lib.dialog.IDialogEnterClicker
+import com.rebecca.lib.dialog.fragment.BaseDoubleDialogFragment
+import com.rebecca.lib.tools.Toaster
 import com.rebecca.lib.zbase.activity.BaseVMActivity
 import kotlinx.android.synthetic.main.rebecca_include.view.*
 
@@ -39,7 +43,20 @@ class RebeccaActivity(override var mLayoutId: Int = R.layout.rebecca_activity) :
                 }
                 ui.rlInclude.bt_register -> {
                     vm.showBean()
-                    MaterialDialogFragment().show(supportFragmentManager, "material")
+                    //MaterialDialogFragment().show(supportFragmentManager, "material")
+                    val enter = object : IDialogEnterClicker {
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+                            Toaster(this@RebeccaActivity).show("dd")
+                        }
+                    }
+                    val cancel = object : IDialogCanceClicker {
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+                            Toaster(this@RebeccaActivity).show("dd545")
+                        }
+                    }
+                    dialogManager.add(BaseDoubleDialogFragment().create("23132", "确认", "qu", 123.toString())
+                            .setOutsideCancel(false).add(enter)
+                            .add(cancel))
                 }
             }
         }
