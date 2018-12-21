@@ -24,7 +24,7 @@ abstract class BaseVMModel {
         sub(t).subscribe(obs)
     }
 
-    open fun <T : Any> sub(t: Observable<T>, obs: DisposableObserver<T>): DisposableObserver<T> {
+    open fun <T : Any, OBS : DisposableObserver<T>> sub(t: Observable<T>, obs: OBS): OBS {
 
         return sub(t).subscribeWith(obs)
     }
