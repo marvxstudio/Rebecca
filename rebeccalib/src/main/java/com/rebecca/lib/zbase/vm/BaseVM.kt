@@ -14,7 +14,7 @@ abstract class BaseVM : ViewModel() {
     val rxer by lazy { CompositeDisposable() }
 
     //=========================  =================================
-    open fun add(obs: DisposableObserver<*>) {
+    open fun sub(obs: DisposableObserver<*>) {
         rxer.add(obs)
     }
 
