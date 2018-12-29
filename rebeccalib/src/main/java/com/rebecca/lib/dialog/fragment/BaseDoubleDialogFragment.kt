@@ -3,8 +3,6 @@ package com.rebecca.lib.dialog.fragment
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import com.rebecca.lib.dialog.IDialogCanceClicker
-import com.rebecca.lib.dialog.IDialogEnterClicker
 import com.rebecca.lib.dialog.fragment.base.BaseKtDialogFragment
 
 open class BaseDoubleDialogFragment : BaseKtDialogFragment() {

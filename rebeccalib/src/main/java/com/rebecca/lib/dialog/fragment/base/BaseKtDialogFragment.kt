@@ -2,11 +2,15 @@ package com.rebecca.lib.dialog.fragment.base
 
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import com.rebecca.lib.dialog.IDialogCanceClicker
 import com.rebecca.lib.dialog.IDialogEnterClicker
 import com.rebecca.lib.zbase.ICreate
@@ -15,6 +19,14 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     //=========================  =================================
     val mTag = javaClass.simpleName
     open var isDebug = false
+    //=========================  =================================
+    open var openTitle = true
+
+    open var openBackground = true
+
+    open var openTouchOutside = true
+
+    open var widthPer = 0.75
     //=========================  =================================
     var mRootView: View? = null
 
@@ -31,6 +43,13 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     }
 
     override fun onInitView() {
+        if (openTitle == false) {
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        }
+        if (openBackground == false) {
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+        dialog.setCanceledOnTouchOutside(openTouchOutside)
     }
 
     open fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,6 +69,21 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
             val listener = activity as OnDismissListener
             listener.onDismiss(dialog)
         }
+    }
+
+    open fun onInitWindow() {
+        if (dialog != null && openTitle == false) {
+            val dm = DisplayMetrics()
+            activity?.windowManager?.defaultDisplay?.getMetrics(dm)
+            val width: Int = (dm.widthPixels * widthPer).toInt()
+            dialog.getWindow()?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+    }
+
+    //========================= main ==================================
+    override fun onStart() {
+        super.onStart()
+        onInitWindow()
     }
 
     //=========================  =================================
