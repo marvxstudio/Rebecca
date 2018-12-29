@@ -10,21 +10,13 @@ import com.rebecca.lib.zbase.fragment.BaseVMFragment
 
 class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>(), Clicker {
     //=========================  =================================
-    var colorCount = 0
 
     override fun onClick(v: View?) {
         when (v) {
             ui.ll -> {
-                var color = 0
-                colorCount++
-                colorCount %= 2
-                if (colorCount > 0) {
-                    color = R.color.skyblue
-                }
-                else {
-                    color = R.color.red_pressed
-                }
-                vm.color.postValue(color)
+                vm.colorCount++
+                //vm.cc(vm.colorCount)
+                //vm.color.postValue(color)
             }
         }
     }
@@ -38,7 +30,7 @@ class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>(), Cli
         user.userInfo.postValue("my name is RebeccaApplication")
 
         vm.bean.postValue(user)
-        vm.color.postValue(R.color.skyblue)
+        vm.color.value = R.color.skyblue
         return super.onCreateVM(vm)
     }
 

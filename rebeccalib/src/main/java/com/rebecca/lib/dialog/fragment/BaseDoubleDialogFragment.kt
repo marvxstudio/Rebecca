@@ -14,9 +14,7 @@ open class BaseDoubleDialogFragment : BaseKtDialogFragment() {
     var textEnter: String = ""
     var textCancel: String = ""
     //=========================  =================================
-    var clickerCancel: IDialogCanceClicker? = null
 
-    var clickerEnter: IDialogEnterClicker? = null
 
     //=========================  =================================
     open var outsideCancel = false
@@ -51,13 +49,5 @@ open class BaseDoubleDialogFragment : BaseKtDialogFragment() {
     }
 
     //=========================  =================================
-    fun add(clicker: IDialogEnterClicker): BaseDoubleDialogFragment {
-        clickerEnter = clicker
-        return this
-    }
 
-    fun add(clicker: IDialogCanceClicker): BaseDoubleDialogFragment {
-        clickerCancel = clicker
-        return this
-    }
 }

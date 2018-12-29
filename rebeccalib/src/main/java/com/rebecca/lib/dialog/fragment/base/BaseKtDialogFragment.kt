@@ -7,6 +7,8 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rebecca.lib.dialog.IDialogCanceClicker
+import com.rebecca.lib.dialog.IDialogEnterClicker
 import com.rebecca.lib.zbase.ICreate
 
 abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
@@ -16,7 +18,9 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     //=========================  =================================
     var mRootView: View? = null
 
+    var clickerCancel: IDialogCanceClicker? = null
 
+    var clickerEnter: IDialogEnterClicker? = null
     //========================= init  =================================
     override fun onInit() {
         onInitView()
@@ -49,5 +53,13 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     }
 
     //=========================  =================================
+    fun add(clicker: IDialogEnterClicker): BaseKtDialogFragment {
+        clickerEnter = clicker
+        return this
+    }
 
+    fun add(clicker: IDialogCanceClicker): BaseKtDialogFragment {
+        clickerCancel = clicker
+        return this
+    }
 }
