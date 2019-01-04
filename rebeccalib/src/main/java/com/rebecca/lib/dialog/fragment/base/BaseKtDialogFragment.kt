@@ -87,12 +87,12 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     }
 
     //=========================  =================================
-    fun add(clicker: IDialogEnterClicker): BaseKtDialogFragment {
+    fun add(clicker: IDialogEnterClicker?): BaseKtDialogFragment {
         clickerEnter = clicker
         return this
     }
 
-    fun add(clicker: IDialogCanceClicker): BaseKtDialogFragment {
+    fun add(clicker: IDialogCanceClicker?): BaseKtDialogFragment {
         clickerCancel = clicker
         return this
     }
