@@ -28,6 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".dialog.DialogListActivity" />
+        <activity android:name=".rx.RxActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

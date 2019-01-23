@@ -6,7 +6,7 @@
             type="Boolean"/>
         <variable
             name="clicker"
-            type="com.example.demo.activity.Clicker"/>
+            type="com.example.demo.zbase.Clicker"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

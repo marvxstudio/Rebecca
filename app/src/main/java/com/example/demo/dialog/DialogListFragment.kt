@@ -2,7 +2,7 @@ package com.example.demo.dialog
 
 import android.view.View
 import com.example.demo.R
-import com.example.demo.activity.Clicker
+import com.example.demo.zbase.Clicker
 import com.example.demo.databinding.DialogListFragmentBinding
 import com.example.demo.dialog.fragment.MaterialDialogFragment
 import com.rebecca.lib.zbase.fragment.BaseVMFragment

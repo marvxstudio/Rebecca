@@ -1,4 +1,4 @@
-package com.example.demo.vm
+package com.example.demo.activity
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.demo.R

@@ -13,5 +13,6 @@ class RouterUrl {
         private const val model = "/app/"
         const val COMMON = model + "common" + ACTIVITY
         const val DIALOG = model + "dialog" + ACTIVITY
+        const val RX = model + "RX" + ACTIVITY
     }
 }

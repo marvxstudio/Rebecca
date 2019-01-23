@@ -3,7 +3,7 @@ package com.example.demo.list.fragment.rv.item
 import android.view.View
 import android.view.ViewGroup
 import com.example.demo.R
-import com.example.demo.activity.Clicker
+import com.example.demo.zbase.Clicker
 import com.example.demo.databinding.FunItemVhBinding
 import com.example.demo.list.fragment.rv.RvVMBox
 import com.rebecca.lib.v.rv.BaseRvVH

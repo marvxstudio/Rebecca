@@ -8,7 +8,7 @@ import com.example.demo.bean.RebeccaUser
 import com.example.demo.databinding.RebeccaActivityBinding
 import com.example.demo.fragment.RebeccaFragment
 import com.example.demo.router.RouterUrl
-import com.example.demo.vm.RebeccaVM
+import com.example.demo.zbase.Clicker
 import com.rebecca.lib.dialog.IDialogCanceClicker
 import com.rebecca.lib.dialog.IDialogEnterClicker
 import com.rebecca.lib.dialog.fragment.BaseDoubleDialogFragment

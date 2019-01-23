@@ -2,10 +2,10 @@ package com.example.demo.fragment
 
 import android.view.View
 import com.example.demo.R
-import com.example.demo.activity.Clicker
+import com.example.demo.zbase.Clicker
 import com.example.demo.bean.RebeccaUser
 import com.example.demo.databinding.RebeccaFragmentBinding
-import com.example.demo.vm.RebeccaVM
+import com.example.demo.activity.RebeccaVM
 import com.rebecca.lib.zbase.fragment.BaseVMFragment
 
 class RebeccaFragment : BaseVMFragment<RebeccaFragmentBinding, RebeccaVM>(), Clicker {

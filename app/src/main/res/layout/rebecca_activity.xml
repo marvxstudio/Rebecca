@@ -4,11 +4,11 @@
     <data>
         <variable
             name="vm"
-            type="com.example.demo.vm.RebeccaVM"/>
+            type="com.example.demo.activity.RebeccaVM"/>
 
         <variable
             name="clicker"
-            type="com.example.demo.activity.Clicker"/>
+            type="com.example.demo.zbase.Clicker"/>
     </data>
 
     <LinearLayout
