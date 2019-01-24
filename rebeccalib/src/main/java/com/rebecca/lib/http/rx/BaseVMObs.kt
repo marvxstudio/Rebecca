@@ -1,32 +1,42 @@
 package com.rebecca.lib.http.rx
 
 import com.rebecca.lib.http.bean.ICheck
-import io.reactivex.disposables.Disposable
+import com.rebecca.lib.http.rx.base.IRec
+import io.reactivex.observers.DisposableObserver
 
-abstract class BaseVMObs<BOX : ICheck> : IVMObserver<BOX> {
-
-    //===========================================
-    lateinit var disposable: Disposable
+abstract class BaseVMObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> {
 
     //===========================================
 
-    override var isRecError: Boolean = false
-
-    lateinit var boxRec: BOX
     //===========================================
-    override fun onSubscribe(d: Disposable) {
-        disposable = d
-    }
+
+    //=================== next ========================
 
     override fun onNext(box: BOX) {
-        this.boxRec = box
-        super.onNext(box)
+        if (isRec(box)) {
+            onRec(box)
+        }
+        else {
+            onError(box)
+        }
+    }
+    //=================== complete ========================
+
+    override fun onComplete() {
+    }
+
+    //================== error =========================
+    override fun onError(e: Throwable) {
+        if (isNetOn()) {
+            onErrorNetON(e)
+        }
+        else {
+            onErrorNetOFF(e)
+        }
     }
 
     //===========================================
     override fun isRec(box: BOX): Boolean {
         return box.isRec()
     }
-    //==================  =========================
-
 }

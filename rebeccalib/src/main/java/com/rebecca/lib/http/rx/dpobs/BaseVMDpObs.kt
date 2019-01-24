@@ -7,7 +7,7 @@ import io.reactivex.observers.DisposableObserver
 abstract class BaseVMDpObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> {
 
     //===========================================
-    override var isRecError: Boolean = false
+    var isRecError: Boolean = false
 
     //===========================================
     lateinit var boxRec: BOX
@@ -31,7 +31,18 @@ abstract class BaseVMDpObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> 
         }
     }
 
+    fun isRecComplete(isComplete: Boolean = (isRecError == false)): Boolean {
+        return isComplete
+    }
+
+    abstract fun onRecComplete()
+
     //===========================================
+    fun set(isRecError: Boolean) {
+        if (isRecError) {
+            this.isRecError = isRecError
+        }
+    }
 
     //=============== error ========================
     override fun onError(e: Throwable) {

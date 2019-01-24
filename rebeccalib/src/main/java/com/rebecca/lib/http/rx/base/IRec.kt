@@ -3,9 +3,8 @@ package com.rebecca.lib.http.rx.base
 interface IRec<BOX : Any> {
 
     //=================== ========================
-    var isRecError: Boolean
-    //=================== ========================
 
+    //=================== ========================
 
     //=================== ========================
     fun isRec(box: BOX): Boolean
@@ -13,12 +12,6 @@ interface IRec<BOX : Any> {
     fun onRec(box: BOX)
 
     //=================== ========================
-
-    fun isRecComplete(isComplete: Boolean = (isRecError == false)): Boolean {
-        return isComplete
-    }
-
-    fun onRecComplete()
 
     //=================== error ======================
 
@@ -28,11 +21,7 @@ interface IRec<BOX : Any> {
 
     fun onErrorNetOFF(e: Throwable) {}
     //=================== ========================
-    fun set(isRecError: Boolean) {
-        if (isRecError) {
-            this.isRecError = isRecError
-        }
-    }
+
     //===========================================
 
     fun isNetOn(): Boolean
