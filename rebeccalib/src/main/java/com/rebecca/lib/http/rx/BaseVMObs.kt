@@ -22,9 +22,6 @@ abstract class BaseVMObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> {
     }
     //=================== complete ========================
 
-    override fun onComplete() {
-    }
-
     //================== error =========================
     override fun onError(e: Throwable) {
         if (isNetOn()) {
