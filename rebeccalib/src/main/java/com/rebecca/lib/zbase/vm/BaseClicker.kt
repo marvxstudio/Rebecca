@@ -6,24 +6,28 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-interface BaseClicker : View.OnClickListener {
+interface BaseClicker : View.OnClickListener, View.OnLongClickListener {
 
-    //==============================================
-    fun addCooler(v: View, msec: Long = 1000) {
-        val obs = object : Observer<Any> {
-            override fun onSubscribe(d: Disposable) {
-            }
+  override fun onLongClick(v: View?): Boolean {
+    return true
+  }
 
-            override fun onNext(t: Any) {
-                onClick(v)
-            }
+  //==============================================
+  fun addCooler(v: View, msec: Long = 1000) {
+    val obs = object : Observer<Any> {
+      override fun onSubscribe(d: Disposable) {
+      }
 
-            override fun onComplete() {
-            }
+      override fun onNext(t: Any) {
+        onClick(v)
+      }
 
-            override fun onError(e: Throwable) {
-            }
-        }
-        RxView.clicks(v).throttleFirst(msec, TimeUnit.MILLISECONDS).subscribe(obs)
+      override fun onComplete() {
+      }
+
+      override fun onError(e: Throwable) {
+      }
     }
+    RxView.clicks(v).throttleFirst(msec, TimeUnit.MILLISECONDS).subscribe(obs)
+  }
 }
