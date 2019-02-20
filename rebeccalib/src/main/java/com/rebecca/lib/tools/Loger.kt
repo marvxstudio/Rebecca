@@ -7,13 +7,13 @@ object Loger {
     var isDebug = true
     var mTag: String = "++++"
 
-    fun show(msg: String, debug: Boolean = isDebug, tag: String = mTag) {
+    fun show(msg: Any, debug: Boolean = isDebug, tag: String = mTag) {
         if (debug) {
-            Log.d(mTag, msg)
+            Log.d(mTag, msg.toString())
         }
     }
 
-    fun show(msg: Any, debug: Boolean = isDebug, tag: String = mTag) {
-        show(msg.toString(), debug, tag)
-    }
+//    fun show(msg: Any, debug: Boolean = isDebug, tag: String = mTag) {
+//        show(msg.toString(), debug, tag)
+//    }
 }
