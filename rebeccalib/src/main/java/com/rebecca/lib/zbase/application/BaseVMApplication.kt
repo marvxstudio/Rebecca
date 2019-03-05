@@ -2,28 +2,30 @@ package com.rebecca.lib.zbase.application
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.rebecca.lib.tools.Loger
 
 open class BaseVMApplication : Application() {
 
-    //=========================  =================================
-    open var openRouter = false
-    open var openRouterDebug = false
+  //=========================  =================================
+  open var openRouter = false
+  open var openRouterDebug = false
 
-    //========================= router  =================================
-    protected open fun initRouter(isOpen: Boolean = openRouter, isDebug: Boolean = openRouterDebug) {
-        if (isOpen) {
-            ARouter.init(this)
-        }
-        if (isDebug) {
-            ARouter.openLog()
-        }
+  //========================= router  =================================
+  protected open fun initRouter(isOpen: Boolean = openRouter, isDebug: Boolean = openRouterDebug) {
+    if (isOpen) {
+      ARouter.init(this)
     }
-    //========================= init  =================================
-
-    //========================= main ==================================
-
-    override fun onCreate() {
-        super.onCreate()
-        initRouter()
+    if (isDebug) {
+      ARouter.openLog()
     }
+  }
+  //========================= init  =================================
+
+  //========================= main ==================================
+
+  override fun onCreate() {
+    super.onCreate()
+    Loger.update(Loger.Mode.APP_SYNC, applicationContext)
+    initRouter()
+  }
 }
