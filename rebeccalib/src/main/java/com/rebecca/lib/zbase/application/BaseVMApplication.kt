@@ -30,7 +30,7 @@ open class BaseVMApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    Loger.update(Loger.Mode.APP_SYNC, applicationContext)
+    Loger.isOpen = isAppDebug
     initRouter()
   }
 }
