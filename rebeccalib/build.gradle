@@ -48,6 +48,8 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //pix
     // implementation 'com.facebook.fresco:fresco:1.10.0'
     //implementation 'com.facebook.fresco:imagepipeline-okhttp3:1.10.0'
@@ -58,5 +60,5 @@ dependencies {
 
     //路由
     api 'com.alibaba:arouter-api:1.4.0'
-    kapt 'com.alibaba:arouter-compiler:1.2.1'
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
 }
