@@ -3,6 +3,9 @@
 
  <data>
 
+  <variable
+   name="vm"
+   type="com.example.demo.rx.RxVM" />
  </data>
 
  <LinearLayout
@@ -15,19 +18,8 @@
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    android:fontFamily="@font/dinbold"
-   android:text="1234567890" />
+   android:text="rx" />
 
-  <TextView
-   android:id="@+id/tv_title2"
-   android:layout_width="match_parent"
-   android:layout_height="wrap_content"
-   android:text="1234567890" />
 
-  <TextView
-   android:id="@+id/tv_title3"
-   android:layout_width="match_parent"
-   android:fontFamily="@font/num"
-   android:layout_height="wrap_content"
-   android:text="1234567890" />
  </LinearLayout>
 </layout>

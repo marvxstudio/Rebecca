@@ -1,4 +1,4 @@
-package com.example.demo.list.activity
+package com.example.demo.list
 
 import com.example.demo.R
 import com.example.demo.databinding.FunListActivityBinding

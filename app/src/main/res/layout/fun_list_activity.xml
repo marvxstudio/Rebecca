@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.demo.list.activity.FunListActivityVM"/>
+            type="com.example.demo.list.FunListActivityVM"/>
     </data>
     <FrameLayout
         android:id="@+id/fl_fragment"
