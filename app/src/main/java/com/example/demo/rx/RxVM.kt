@@ -4,4 +4,5 @@ import com.rebecca.lib.zbase.vm.BaseVM
 
 class RxVM : BaseVM() {
 
+  var text = "123"
 }

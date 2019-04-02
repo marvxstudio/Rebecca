@@ -8,43 +8,44 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rebecca.lib.tools.ToolsVM
 import com.rebecca.lib.zbase.ICreate
 import com.rebecca.lib.zbase.vm.BaseVM
 
-abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate,
-        LifecycleOwner {
-    //=========================  =================================
-    lateinit var ui: VDB
-    lateinit var vm: VM
-    //=========================  =================================
-    abstract var mLayoutId: Int
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate, LifecycleOwner {
+  //=========================  =================================
+  open val classVM = ToolsVM.createClassVM<VM>(this)
+  protected lateinit var ui: VDB
+  protected val vm: VM by lazy { createVM() }
+  //=========================  =================================
+  abstract var mLayoutId: Int
 
-    //=========================  =================================
-    open fun createVM(modelClass: Class<VM>): VM {
-        vm = ViewModelProviders.of(this).get(modelClass)
-        return onCreateVM(vm)
-    }
+  //=========================  =================================
+  fun createVM(modelClass: Class<VM> = classVM): VM {
+    val vm = ViewModelProviders.of(this).get(modelClass)
+    return onCreateVM(vm)
+  }
 
-    open fun onCreateVM(vm: VM): VM {
+  open fun onCreateVM(vm: VM): VM {
 
-        return vm
-    }
+    return vm
+  }
 
-    open fun onDestroyVM() {
-        if (::vm.isInitialized) {
-            vm.onDestroy()
-        }
-    }
+  open fun onDestroyVM() {
+//    if (::vm.isInitialized) {
+    vm.onDestroy()
+//    }
+  }
 
-    //=========================  =================================
-    override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
-        ui.setLifecycleOwner(this)
-        return ui.root
-    }
+  //=========================  =================================
+  override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
+    ui.setLifecycleOwner(this)
+    return ui.root
+  }
 
-    override fun onDestroy() {
-        onDestroyVM()
-        super.onDestroy()
-    }
+  override fun onDestroy() {
+    onDestroyVM()
+    super.onDestroy()
+  }
 }

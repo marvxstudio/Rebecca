@@ -3,18 +3,21 @@ package com.rebecca.lib.zbase.activity
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
+import com.rebecca.lib.tools.ToolsVM
 import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
   //=========================  =================================
-  lateinit var ui: VDB
-  lateinit var vm: VM
+  open val classVM = ToolsVM.createClassVM<VM>(this)
+  protected lateinit var ui: VDB
+  protected val vm: VM by lazy { createVM() }
   //=========================  =================================
   //=========================  =================================
 
   //=========================init  =================================
-  fun createVM(modelClass: Class<VM>): VM {
-    vm = ViewModelProviders.of(this).get(modelClass)
+  fun createVM(modelClass: Class<VM> = classVM): VM {
+    val vm = ViewModelProviders.of(this).get(modelClass)
+
     return onCreateVM(vm)
   }
 
@@ -23,9 +26,9 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
   }
 
   open fun onDestroyVM() {
-    if (::vm.isInitialized) {
-      vm.onDestroy()
-    }
+//    if (::vm.isInitialized) {
+    vm.onDestroy()
+//    }
   }
 
   override fun onInit() {
@@ -38,4 +41,5 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
     onDestroyVM()
     super.onDestroy()
   }
+
 }

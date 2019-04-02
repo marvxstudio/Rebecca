@@ -57,7 +57,7 @@ class RxActivity(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMAct
 
   override fun onInitView() {
     super.onInitView()
-    ui.vm = createVM(RxVM::class.java)
+    ui.vm =vm
     rxStart()
   }
   //========================= main ==================================
