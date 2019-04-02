@@ -6,36 +6,36 @@ import android.databinding.ViewDataBinding
 import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
-    //=========================  =================================
-    lateinit var ui: VDB
-    lateinit var vm: VM
-    //=========================  =================================
-    //=========================  =================================
+  //=========================  =================================
+  lateinit var ui: VDB
+  lateinit var vm: VM
+  //=========================  =================================
+  //=========================  =================================
 
-    //=========================init  =================================
-    fun createVM(modelClass: Class<VM>): VM {
-        vm = ViewModelProviders.of(this).get(modelClass)
-        return onCreateVM(vm)
-    }
+  //=========================init  =================================
+  fun createVM(modelClass: Class<VM>): VM {
+    vm = ViewModelProviders.of(this).get(modelClass)
+    return onCreateVM(vm)
+  }
 
-    open fun onCreateVM(vm: VM): VM {
-        return vm
-    }
+  open fun onCreateVM(vm: VM): VM {
+    return vm
+  }
 
-    open fun onDestroyVM() {
-        if (::vm.isInitialized) {
-            vm.onDestroy()
-        }
+  open fun onDestroyVM() {
+    if (::vm.isInitialized) {
+      vm.onDestroy()
     }
+  }
 
-    override fun onInit() {
-        ui = DataBindingUtil.setContentView(this, mLayoutId)
-        ui.setLifecycleOwner(this)
-        super.onInit()
-    }
+  override fun onInit() {
+    ui = DataBindingUtil.setContentView(this, mLayoutId)
+    ui.setLifecycleOwner(this)
+    super.onInit()
+  }
 
-    override fun onDestroy() {
-        onDestroyVM()
-        super.onDestroy()
-    }
+  override fun onDestroy() {
+    onDestroyVM()
+    super.onDestroy()
+  }
 }

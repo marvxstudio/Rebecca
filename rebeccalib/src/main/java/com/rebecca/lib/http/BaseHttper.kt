@@ -10,24 +10,33 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 abstract class BaseHttper(var host: BaseHost) {
 
-    val mRetrofit: Retrofit by lazy { onCreateRetrofit() }
-    //=========================  =================================
-    open var isHttps = false
+  //=========================  =================================
+  protected val mTag = javaClass.simpleName
+  //=========================  =================================
+  protected val mRetrofit: Retrofit by lazy { onCreateRetrofit() }
+  //=========================  =================================
 
-    //=========================  =================================
+  //========================= gson =================================
+  fun onCreateGson(): Gson {
+    return GsonBuilder().create()
+  }
 
-    fun <API : Any> createApi(cls: Class<API>): API {
-        return mRetrofit.create<API>(cls)
-    }
+  //========================= header =================================
 
-    //========================= gson =================================
-    fun onCreateGson(): Gson {
-        return GsonBuilder().create()
-    }
-    //========================= okHttp =================================
+  fun onCreateHeader() {
+  }
 
-    fun onCreateOkHttpClient(): OkHttpClient {
-        val client = OkHttpClient.Builder().build()
+  //========================= retrofit =================================
+  open fun onCreateRetrofit(builder: Retrofit.Builder = Retrofit.Builder().baseUrl(host.url)): Retrofit {
+    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())//设置返回类型为RXJava，或者回调
+      .addConverterFactory(GsonConverterFactory.create(onCreateGson()))      //设置返回数据类型
+      .client(onCreateOkHttpClient()) //设置网络请求，默认httpclient
+    return builder.build()
+  }
+  //========================= okHttp =================================
+
+  fun onCreateOkHttpClient(): OkHttpClient {
+    val client = OkHttpClient.Builder().build()
 
 //        val mRewriteCacheControlInterceptor = object : Interceptor {
 //            override fun intercept(chain: Interceptor.Chain): Response {
@@ -49,30 +58,12 @@ abstract class BaseHttper(var host: BaseHost) {
 //            }
 //        }
 
-        return client
-    }
-    //========================= header =================================
+    return client
+  }
+  //=========================  =================================
 
-    fun onCreateHeader() {
-    }
-
-    //========================= retrofit =================================
-    fun onCreateRetrofit(): Retrofit {
-        val url = if (isHttps == false) host.urlHttp else host.urlHttps
-        val retrofit = Retrofit.Builder()
-                // 设置url头  ：http:www.shianyunduan.com   BuildConfig.API_HOST_URL
-                .baseUrl(url)
-                //设置返回类型为RXJava，或者回调
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //设置返回数据类型
-                .addConverterFactory(GsonConverterFactory.create(onCreateGson()))
-                //设置网络请求，默认httpclient
-                .client(onCreateOkHttpClient())
-                .build()
-        return retrofit
-    }
-    //========================= init  =================================
-
-    //========================= main ==================================
-
+  fun <API : Any> createApi(cls: Class<API>): API {
+    return mRetrofit.create<API>(cls)
+  }
+  //=========================  =================================
 }
