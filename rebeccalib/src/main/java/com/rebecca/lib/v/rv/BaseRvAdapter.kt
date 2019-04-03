@@ -1,82 +1,126 @@
 package com.rebecca.lib.v.rv
 
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
+import android.databinding.ObservableList
+
 abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
 
-    //=====================  ==========================
-    protected lateinit var mlist: ArrayList<VM>
+  //=====================  ==========================
+  val mlist by lazy { onCreateObservableArrayList() }
+  //=====================  ==========================
+  //=====================  ==========================
 
-    //=====================  ==========================
+  var mListItem = ObservableField<VM>()
+  val mHeader by lazy { ObservableField<VM>() }
+  val mFooter by lazy { ObservableField<VM>() }
+  //=====================  ==========================
 
-    //=====================  ==========================
-
-    //=====================  ==========================
-
-    override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
-        this.mlist = list
-        if (isNotify) {
-            notifyDataSetChanged()
+  open fun onCreateObservableArrayList(): ObservableArrayList<VM> {
+    val list = ObservableArrayList<VM>().also {
+      it.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableArrayList<VM>>() {
+        override fun onChanged(sender: ObservableArrayList<VM>?) {
+          notifyDataSetChanged()
         }
-        return this
-    }
 
-    override fun clear(isNotify: Boolean): BaseRvAdapter<VM> {
-        mlist.clear()
-        if (isNotify) {
-            notifyDataSetChanged()
+        override fun onItemRangeRemoved(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
+          notifyItemRangeRemoved(positionStart, itemCount)
         }
-        return this
-    }
 
-    override fun add(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
-        this.mlist.addAll(list)
-        if (isNotify) {
-            notifyDataSetChanged()
+        override fun onItemRangeMoved(sender: ObservableArrayList<VM>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+          notifyDataSetChanged()
         }
-        return this
-    }
 
-    override fun add(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-        mlist.add(index, vm)
-        if (isNotify) {
-            notifyDataSetChanged()
+        override fun onItemRangeInserted(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
+          notifyItemRangeInserted(positionStart, itemCount)
         }
-        return this
-    }
 
-    override fun remove(index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-        return this
+        override fun onItemRangeChanged(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
+          notifyItemRangeChanged(positionStart, itemCount)
+        }
+      })
     }
+    return list
+  }
 
-    override fun set(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-        return this
-    }
+  //=====================  ==========================
 
-    override fun set(vm: VM, index: Int, type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-        return this
-    }
-    override fun removeType(type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-        return this
-    }
+  //=====================  ==========================
+  open fun updateHeader(vm: VM, isNotify: Boolean = true, position: Int = 0) {
+  }
 
-    override fun getListSize(offset: Int): Int {
-        return mlist.size + offset
-    }
+  open fun updateFooter(vm: VM, isNotify: Boolean = true, position: Int = mlist.size) {
 
-    //===================== init ========================
-    fun getList(): ArrayList<VM> {
-        return mlist
-    }
-    //===================== main ========================
+  }
 
-    override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
-        holder.updateVM(mlist.get(position))
-    }
+  override fun getListSize(offset: Int): Int {
+    return mlist.size + offset
+  }
 
-    override fun getItemViewType(position: Int): Int {
-        return mlist.get(position).viewType
-    }
+  fun getList(): ObservableArrayList<VM> {
+    return mlist
+  }
+  //=====================  ==========================
 
-    override fun getItemCount(): Int {
-        return mlist.size
+  override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
+    mlist.clear()
+    mlist.addAll(list)
+
+    return this
+  }
+
+  override fun clear(isNotify: Boolean): BaseRvAdapter<VM> {
+    mlist.clear()
+
+    return this
+  }
+
+  override fun add(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
+    mlist.addAll(list)
+
+    return this
+  }
+
+  override fun add(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    mlist.add(index, vm)
+
+    return this
+  }
+
+  override fun remove(index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    return this
+  }
+
+  override fun set(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    return this
+  }
+
+  override fun set(vm: VM, index: Int, type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    return this
+  }
+
+  override fun removeType(type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    return this
+  }
+  //===================== init ========================
+
+  override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
+    holder.updateVM(mlist.get(position))
+  }
+
+  override fun getItemViewType(position: Int): Int {
+    return mlist.get(position).viewType
+  }
+
+  override fun getItemCount(): Int {
+    return mlist.size
+  }
+
+  override fun getItemId(position: Int): Long {
+    var index = super.getItemId(position)
+    if (hasStableIds()) {
+      index = position.toLong()
     }
+    return index
+  }
 }

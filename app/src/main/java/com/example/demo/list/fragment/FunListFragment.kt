@@ -3,30 +3,36 @@ package com.example.demo.list.fragment
 import com.example.demo.R
 import com.example.demo.databinding.FunListFragmentBinding
 import com.example.demo.list.fragment.rv.FunListAdapter
+import com.example.demo.list.fragment.rv.RvVMBox
 import com.rebecca.lib.zbase.fragment.BaseVMFragment
 
 class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
-    override var mLayoutId: Int = R.layout.fun_list_fragment
-    //=========================  =================================
-    //========================= rv =================================
+  override var mLayoutId: Int = R.layout.fun_list_fragment
+  //=========================  =================================
+  private val adapter = FunListAdapter()
+  //========================= rv =================================
 
-    fun initRV() {
-        val adapter = FunListAdapter()
-        vm.createList(activity!!, adapter)
-        adapter.update(activity!!, ui.rv)
-        adapter.update(vm.funList)
+  fun initRV() {
+
+    adapter.update(activity!!, ui.rv)
+
+  }
+  //========================= init  =================================
+
+  override fun onCreateVM(vm: FunListVM): FunListVM {
+    vm.watcher = object : FunListVM.Watcher {
+      override fun onUpdate(list: ArrayList<RvVMBox>) {
+        adapter.update(list)
+      }
     }
-    //========================= init  =================================
+    return super.onCreateVM(vm)
+  }
 
-    override fun onCreateVM(vm: FunListVM): FunListVM {
-
-        return super.onCreateVM(vm)
-    }
-
-    override fun onInitView() {
-        super.onInitView()
-        ui.vm = createVM(FunListVM::class.java)
-        initRV()
-    }
-    //========================= main ==================================
+  override fun onInitView() {
+    super.onInitView()
+    ui.vm = vm
+    initRV()
+    vm.createList(adapter)
+  }
+  //========================= main ==================================
 }
