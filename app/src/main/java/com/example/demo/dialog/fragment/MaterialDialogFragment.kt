@@ -22,6 +22,9 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
         vm.info.postValue(" age:" + vm.age)
         dialogManager?.add(MaterialDialogFragment())
       }
+      ui.tvClose -> {
+        dismiss()
+      }
     }
   }
   //========================= init =================================
