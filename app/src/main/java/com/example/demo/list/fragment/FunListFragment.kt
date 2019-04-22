@@ -30,7 +30,7 @@ class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
 
   override fun onInitView() {
     super.onInitView()
-    ui.vm = vm
+    ui.vm = createVM(FunListVM::class.java)
     initRV()
     vm.createList(adapter)
   }

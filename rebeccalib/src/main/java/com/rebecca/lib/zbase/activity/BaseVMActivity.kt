@@ -7,16 +7,14 @@ import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
   //=========================  =================================
-//  open var classVM = ToolsVM.createClassVM<VM>(this)
-  protected lateinit var ui: VDB
-  protected lateinit var vm: VM
+  lateinit var ui: VDB
+  lateinit var vm: VM
   //=========================  =================================
   //=========================  =================================
 
   //=========================init  =================================
   fun createVM(modelClass: Class<VM>): VM {
     vm = ViewModelProviders.of(this).get(modelClass)
-
     return onCreateVM(vm)
   }
 
@@ -40,5 +38,4 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
     onDestroyVM()
     super.onDestroy()
   }
-
 }

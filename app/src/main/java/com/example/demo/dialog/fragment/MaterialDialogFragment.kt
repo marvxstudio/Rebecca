@@ -38,7 +38,7 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
   override fun onInitView() {
     super.onInitView()
 
-    ui.vm = vm// createVM(MaterialDialogVM::class.java)
+    ui.vm = createVM(MaterialDialogVM::class.java)
     ui.clicker = this
     dialog.setTitle(vm.title.value)
     Loger.show("dialog init")
