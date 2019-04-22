@@ -25,9 +25,9 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
   }
 
   open fun onDestroyVM() {
-//    if (::vm.isInitialized) {
-    vm.onDestroy()
-//    }
+    if (::vm.isInitialized) {
+      vm.onDestroy()
+    }
   }
 
   override fun onInit() {
