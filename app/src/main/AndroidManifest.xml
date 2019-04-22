@@ -46,6 +46,12 @@
 
             </intent-filter>
         </activity>
+        <activity android:name=".list.fragment.rv.vm.SiActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

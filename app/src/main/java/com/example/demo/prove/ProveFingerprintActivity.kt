@@ -7,7 +7,7 @@ import com.example.demo.zbase.Clicker
 import com.rebecca.lib.zbase.activity.BaseVMActivity
 import com.rebecca.lib.zbase.vm.BaseVM
 
-class ProveFingerprintActivity(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMActivity<RxActivityBinding, BaseVM>(), Clicker {
+open class ProveFingerprintActivity<K : String>(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMActivity<RxActivityBinding, BaseVM>(), Clicker {
 
   //=========================  =================================
 

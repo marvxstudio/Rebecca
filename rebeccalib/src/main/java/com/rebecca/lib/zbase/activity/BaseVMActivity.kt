@@ -3,20 +3,19 @@ package com.rebecca.lib.zbase.activity
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
-import com.rebecca.lib.tools.ToolsVM
 import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
   //=========================  =================================
-  open val classVM = ToolsVM.createClassVM<VM>(this)
+//  open var classVM = ToolsVM.createClassVM<VM>(this)
   protected lateinit var ui: VDB
-  protected val vm: VM by lazy { createVM() }
+  protected lateinit var vm: VM
   //=========================  =================================
   //=========================  =================================
 
   //=========================init  =================================
-  fun createVM(modelClass: Class<VM> = classVM): VM {
-    val vm = ViewModelProviders.of(this).get(modelClass)
+  fun createVM(modelClass: Class<VM>): VM {
+    vm = ViewModelProviders.of(this).get(modelClass)
 
     return onCreateVM(vm)
   }
