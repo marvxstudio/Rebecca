@@ -1,11 +1,12 @@
 package com.rebecca.lib.v.rv
 
 import android.content.Context
+import android.databinding.ObservableArrayList
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
 
-abstract class BaseKtAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
+abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ObservableArrayList<VM>) : Adapter<BaseRvVH<*, VM>>(), MutableList<VM> by list {
 
   //================================================
   open var openAutoNotify = true
@@ -13,22 +14,13 @@ abstract class BaseKtAdapter<VM : BaseRvVM> : Adapter<BaseRvVH<*, VM>>() {
   //================================================
   abstract fun update(list: ArrayList<VM>, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
-  abstract fun clear(isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
-
-  abstract fun add(list: ArrayList<VM>, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
-
-  abstract fun add(vm: VM, index: Int = getListSize(), isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
-
-  abstract fun set(vm: VM, index: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
-
   abstract fun set(vm: VM, index: Int, type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
   abstract fun removeType(type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
-  abstract fun remove(index: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
-
-  abstract fun getListSize(offset: Int = 0): Int
-
+  open fun output(): ObservableArrayList<VM> {
+    return list
+  }
   //================================================
 
   /*

@@ -1,97 +1,43 @@
 package com.rebecca.lib.v.rv
 
+import android.content.Context
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
-import android.databinding.ObservableList
+import android.support.v7.widget.RecyclerView
+import com.rebecca.lib.tools.ToolsList
 
-abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
+abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayList<VM>()) {
 
   //=====================  ==========================
-  val mlist by lazy { onCreateObservableArrayList() }
-  //=====================  ==========================
-  //=====================  ==========================
 
-  var mListItem = ObservableField<VM>()
   val mHeader by lazy { ObservableField<VM>() }
   val mFooter by lazy { ObservableField<VM>() }
+
+  //=====================  ==========================
   //=====================  ==========================
 
-  open fun onCreateObservableArrayList(): ObservableArrayList<VM> {
-    val list = ObservableArrayList<VM>().also {
-      it.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableArrayList<VM>>() {
-        override fun onChanged(sender: ObservableArrayList<VM>?) {
-          notifyDataSetChanged()
-        }
-
-        override fun onItemRangeRemoved(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
-          notifyItemRangeRemoved(positionStart, itemCount)
-        }
-
-        override fun onItemRangeMoved(sender: ObservableArrayList<VM>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
-          notifyDataSetChanged()
-        }
-
-        override fun onItemRangeInserted(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
-          notifyItemRangeInserted(positionStart, itemCount)
-        }
-
-        override fun onItemRangeChanged(sender: ObservableArrayList<VM>?, positionStart: Int, itemCount: Int) {
-          notifyItemRangeChanged(positionStart, itemCount)
-        }
-      })
-    }
-    return list
+  override fun update(context: Context, rv: RecyclerView, manager: RecyclerView.LayoutManager, hasStableIds: Boolean): BaseKtAdapter<VM> {
+    onCreateList()
+    return super.update(context, rv, manager, hasStableIds)
   }
 
-  //=====================  ==========================
+  protected open fun onCreateList(list: ObservableArrayList<VM> = this.list) {
+    ToolsList.createOBS(this, list)
+  }
 
   //=====================  ==========================
   open fun updateHeader(vm: VM, isNotify: Boolean = true, position: Int = 0) {
   }
 
-  open fun updateFooter(vm: VM, isNotify: Boolean = true, position: Int = mlist.size) {
+  open fun updateFooter(vm: VM, isNotify: Boolean = true, position: Int = list.size) {
 
   }
 
-  override fun getListSize(offset: Int): Int {
-    return mlist.size + offset
-  }
-
-  fun getList(): ObservableArrayList<VM> {
-    return mlist
-  }
   //=====================  ==========================
 
   override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
-    mlist.clear()
-    mlist.addAll(list)
-
-    return this
-  }
-
-  override fun clear(isNotify: Boolean): BaseRvAdapter<VM> {
-    mlist.clear()
-
-    return this
-  }
-
-  override fun add(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
-    mlist.addAll(list)
-
-    return this
-  }
-
-  override fun add(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-    mlist.add(index, vm)
-
-    return this
-  }
-
-  override fun remove(index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-    return this
-  }
-
-  override fun set(vm: VM, index: Int, isNotify: Boolean): BaseRvAdapter<VM> {
+    this.list.clear()
+    this.list.addAll(list)
     return this
   }
 
@@ -105,15 +51,15 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
   //===================== init ========================
 
   override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
-    holder.updateVM(mlist.get(position))
+    holder.updateVM(list.get(position))
   }
 
   override fun getItemViewType(position: Int): Int {
-    return mlist.get(position).viewType
+    return list.get(position).viewType
   }
 
   override fun getItemCount(): Int {
-    return mlist.size
+    return list.size
   }
 
   override fun getItemId(position: Int): Long {
@@ -123,4 +69,5 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>() {
     }
     return index
   }
+
 }
