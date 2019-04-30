@@ -9,20 +9,20 @@ import com.rebecca.lib.zbase.activity.BaseVMActivity
 
 @Route(path = RouterUrl.App.DIALOG)
 class DialogListActivity(override var mLayoutId: Int = R.layout.fl_layout) : BaseVMActivity<FlLayoutBinding,
-        DialogListVM>() {
-    //=========================  =================================
+  DialogListVM>() {
+  //=========================  =================================
 
-    //=========================  =================================
+  //=========================  =================================
 
-    //========================= init  =================================
+  //========================= init  =================================
 
-    override fun onInitView() {
-        super.onInitView()
-        supportFragmentManager.beginTransaction().add(ui.flFragment.id, DialogListFragment()).commit()
-    }
+  override fun onInitView() {
+    super.onInitView()
+    DialogListFragment().addTo(ui.flFragment.id, supportFragmentManager)
+  }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        dialogManager.add(MaterialDialogFragment())
-    }
+  override fun onDestroy() {
+    super.onDestroy()
+    dialogManager.add(MaterialDialogFragment())
+  }
 }
