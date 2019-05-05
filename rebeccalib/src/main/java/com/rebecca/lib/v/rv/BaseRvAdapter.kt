@@ -13,11 +13,11 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayL
   val mFooter by lazy { ObservableField<VM>() }
 
   //=====================  ==========================
-  val watcher: BaseListWatcher<VM> by lazy { onCreateListWatcher() }
+  val listWatcher: BaseListWatcher<VM> by lazy { onCreateListWatcher() }
   //=====================  ==========================
 
   override fun update(context: Context, rv: RecyclerView, manager: RecyclerView.LayoutManager, hasStableIds: Boolean): BaseKtAdapter<VM> {
-    watcher.update(list)
+    listWatcher.update(list)
     return super.update(context, rv, manager, hasStableIds)
   }
 
