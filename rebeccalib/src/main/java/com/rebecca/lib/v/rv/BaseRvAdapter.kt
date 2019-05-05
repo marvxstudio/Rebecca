@@ -4,7 +4,6 @@ import android.content.Context
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import android.support.v7.widget.RecyclerView
-import com.rebecca.lib.tools.ToolsList
 
 abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayList<VM>()) {
 
@@ -14,15 +13,16 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayL
   val mFooter by lazy { ObservableField<VM>() }
 
   //=====================  ==========================
+  val watcher: BaseListWatcher<VM> by lazy { onCreateListWatcher() }
   //=====================  ==========================
 
   override fun update(context: Context, rv: RecyclerView, manager: RecyclerView.LayoutManager, hasStableIds: Boolean): BaseKtAdapter<VM> {
-    onCreateList()
+    watcher.update(list)
     return super.update(context, rv, manager, hasStableIds)
   }
 
-  protected open fun onCreateList(list: ObservableArrayList<VM> = this.list) {
-    ToolsList.createOBS(this, list)
+  protected open fun onCreateListWatcher(): BaseListWatcher<VM> {
+    return BaseListWatcher(this, list)
   }
 
   //=====================  ==========================
