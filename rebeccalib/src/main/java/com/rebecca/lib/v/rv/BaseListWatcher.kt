@@ -4,7 +4,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import android.support.v7.widget.RecyclerView
 
-open class BaseListWatcher<T>(val adapter: RecyclerView.Adapter<*>, val list: ObservableArrayList<T>) : ObservableList.OnListChangedCallback<ObservableArrayList<T>>() {
+open class BaseListWatcher<T>(val adapter: RecyclerView.Adapter<*>) : ObservableList.OnListChangedCallback<ObservableArrayList<T>>() {
 
   //=======================   ============================
   open fun update(list: ObservableArrayList<T>) {
@@ -12,7 +12,7 @@ open class BaseListWatcher<T>(val adapter: RecyclerView.Adapter<*>, val list: Ob
   }
 
   //=======================   ============================
-  open fun onUpdate(list: ObservableArrayList<T> = this.list, isEmpty: Boolean = list.isEmpty()) {
+  open fun onUpdate(list: ObservableArrayList<T>, isEmpty: Boolean = list.isEmpty()) {
 
   }
 
