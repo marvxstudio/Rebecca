@@ -4,6 +4,10 @@
  <data>
 
   <variable
+   name="clicker"
+   type="com.example.demo.zbase.Clicker" />
+
+  <variable
    name="vm"
    type="com.example.demo.font.FontVM" />
  </data>
@@ -18,18 +22,19 @@
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    android:fontFamily="@font/dinbold"
+   android:onClick="@{clicker}"
    android:text="@{vm.s}" />
 
   <TextView
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
-   android:text="@{vm.s}" />
+   android:text="@{vm.bean.k}" />
 
   <TextView
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    android:fontFamily="@font/num"
-   android:text="@{vm.s}" />
+   android:text="@{vm.bean.name}" />
 
   <TextView
    android:layout_width="match_parent"

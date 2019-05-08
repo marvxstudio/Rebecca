@@ -24,11 +24,11 @@ class FunListVM : BaseVM() {
     funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.DIALOG).setName("dialog list")))
     funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.RX).setName("RX")))
     funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.Font).setName("Font")))
-
     funList.add(RvVMBox().set(ItemRemoveVM().also {
       it.adapter = adapter
       it.setName("remove item")
     }))
+
     funList.add(RvVMBox().set(ItemAddVM().set(adapter).setName("add item")))
     funList.add(RvVMBox(VHType.FOOTER).set(ItemStartVM()))
 

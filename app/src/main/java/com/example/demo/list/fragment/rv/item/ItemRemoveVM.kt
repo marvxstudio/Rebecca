@@ -10,8 +10,11 @@ class ItemRemoveVM : BaseItemVM() {
 
   override fun onClick() {
     super.onClick()
-
-    adapter.removeAt(adapter.lastIndex - 1)
+    (adapter.lastIndex - 1).let {
+      if (it > 0) {
+        adapter.removeAt(it)
+      }
+    }
   }
 
 }
