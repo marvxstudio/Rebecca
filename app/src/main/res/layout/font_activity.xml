@@ -23,24 +23,24 @@
    android:layout_height="wrap_content"
    android:fontFamily="@font/dinbold"
    android:onClick="@{clicker}"
-   android:text="@{vm.s}" />
+   android:text="@{vm.bean1.text}" />
 
   <TextView
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
-   android:text="@{vm.bean.k}" />
-
-  <TextView
-   android:layout_width="match_parent"
-   android:layout_height="wrap_content"
-   android:fontFamily="@font/num"
-   android:text="@{vm.bean.name}" />
+   android:text="@{vm.bean2.text}" />
 
   <TextView
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
    android:fontFamily="@font/num"
-   android:text="@{vm.s}"
+   android:text="@{vm.bean3.text}" />
+
+  <TextView
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:fontFamily="@font/num"
+   android:text="@{vm.bean4.text}"
    android:textStyle="italic" />
  </LinearLayout>
 </layout>

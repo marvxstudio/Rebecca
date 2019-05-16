@@ -15,17 +15,18 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
   var i = 0
 
   override fun onClick(v: View?) {
-    val coun = i++
-    //vm.bean.value = BeanTest(coun.toString()).also { it.k.value = coun.toString() }
+    val c = (i++).toString()
 
-    vm.bean.value?.let {
-      it.name = coun.toString()
-      it.k.value = coun.toString()
-    }
-    vm.bean.value?.let {
-      Loger.show(it.k.value + "  " + it.name)
-    }
-
+    vm.bean1.text = c
+    vm.bean2.text.set(c)
+    vm.bean3.get()?.text = c
+    vm.bean4.set(FontVM.FTest().apply { text = c })
+    Loger.show("""=
+      |bean1= ${vm.bean1.text}
+      |bean2= ${vm.bean2.text.get()}
+      |bean3= ${vm.bean3.get()?.text}
+      |bean4= ${vm.bean4.get()?.text}
+      |""".trimMargin())
   }
   //=========================  =================================
 
@@ -35,6 +36,7 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
     super.onInitView()
     ui.vm = createVM(FontVM::class.java)
     ui.clicker = this
+
   }
   //========================= main ==================================
 }
