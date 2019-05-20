@@ -6,34 +6,41 @@ import io.reactivex.observers.DisposableObserver
 
 abstract class BaseVMObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> {
 
-    //===========================================
+  //===========================================
 
-    //===========================================
+  //===========================================
+  protected var boxRec: BOX? = null
+  //================== rec ======================
 
-    //=================== next ========================
-
-    override fun onNext(box: BOX) {
-        if (isRec(box)) {
-            onRec(box)
-        }
-        else {
-            onError(box)
-        }
+  override fun onNext(box: BOX) {
+    boxRec = box
+    if (isRec(box)) {
+      onRec(box)
     }
-    //=================== complete ========================
+  }
 
-    //================== error =========================
-    override fun onError(e: Throwable) {
-        if (isNetOn()) {
-            onErrorNetON(e)
-        }
-        else {
-            onErrorNetOFF(e)
-        }
-    }
+  override fun isRec(box: BOX): Boolean {
+    return box.isRec()
+  }
 
-    //===========================================
-    override fun isRec(box: BOX): Boolean {
-        return box.isRec()
+  //================ complete ====================
+  override fun onComplete() {
+    onFinish(boxRec)
+  }
+
+  //===========================================
+
+  //=============== error ========================
+  override fun onError(e: Throwable) {
+    if (isNetOn()) {
+      onErrorNetON(e)
     }
+    else {
+      onErrorNetOFF(e)
+    }
+    onFinish(boxRec)
+  }
+
+  //===========================================
+
 }

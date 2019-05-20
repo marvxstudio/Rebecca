@@ -6,56 +6,54 @@ import io.reactivex.observers.DisposableObserver
 
 abstract class BaseVMDpObs<BOX : ICheck> : DisposableObserver<BOX>(), IRec<BOX> {
 
-    //===========================================
-    var isRecError: Boolean = false
+  //===========================================
+  var isRecError: Boolean = false
 
-    //===========================================
-    lateinit var boxRec: BOX
-    //================== rec ======================
+  //===========================================
+  lateinit var boxRec: BOX
+  //================== rec ======================
 
-    override fun onNext(box: BOX) {
-        boxRec = box
-        if (isRec(box)) {
-            onRec(box)
-        }
+  override fun onNext(box: BOX) {
+    boxRec = box
+    if (isRec(box)) {
+      onRec(box)
     }
+  }
 
-    override fun isRec(box: BOX): Boolean {
-        return box.isRec()
+  override fun isRec(box: BOX): Boolean {
+    return box.isRec()
+  }
+
+  //================ complete ====================
+  override fun onComplete() {
+    if (isRecComplete()) {
+      onRecComplete()
     }
+  }
 
-    //================ complete ====================
-    override fun onComplete() {
-        if (isRecComplete()) {
-            onRecComplete()
-        }
+  fun isRecComplete(isComplete: Boolean = (isRecError == false)): Boolean {
+    return isComplete
+  }
+
+  abstract fun onRecComplete()
+
+  //===========================================
+  fun set(isRecError: Boolean) {
+    if (isRecError) {
+      this.isRecError = isRecError
     }
+  }
 
-    fun isRecComplete(isComplete: Boolean = (isRecError == false)): Boolean {
-        return isComplete
+  //=============== error ========================
+  override fun onError(e: Throwable) {
+    if (isNetOn()) {
+      onErrorNetON(e)
     }
-
-    abstract fun onRecComplete()
-
-    //===========================================
-    fun set(isRecError: Boolean) {
-        if (isRecError) {
-            this.isRecError = isRecError
-        }
+    else {
+      onErrorNetOFF(e)
     }
+  }
 
-    //=============== error ========================
-    override fun onError(e: Throwable) {
-        if (isNetOn()) {
-            onErrorNetON(e)
-        }
-        else {
-            onErrorNetOFF(e)
-        }
-    }
+  //===========================================
 
-    //===========================================
-    override fun isNetOn(): Boolean {
-        return true
-    }
 }
