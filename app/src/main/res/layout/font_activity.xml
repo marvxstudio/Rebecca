@@ -42,5 +42,23 @@
    android:fontFamily="@font/num"
    android:text="@{vm.bean4.text}"
    android:textStyle="italic" />
+
+  <TextView
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:fontFamily="@font/num"
+   android:text="@{vm.bean5.text}" />
+
+  <TextView
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:fontFamily="@font/num"
+   android:text="@{vm.bean6.text}" />
+
+  <TextView
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:fontFamily="@font/num"
+   android:text="@{vm.bean7.text}" />
  </LinearLayout>
 </layout>

@@ -1,11 +1,10 @@
 package com.example.demo.font
 
+import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
 import com.rebecca.lib.zbase.vm.BaseVM
 
 class FontVM : BaseVM() {
-
-
 
   //================= ===================
   var bean1 = FTest()
@@ -16,7 +15,11 @@ class FontVM : BaseVM() {
 
   var bean4 = ObservableField<FTest>(FTest())
   //================= ===================
+  var bean5 = MutableLiveData<FTest>()
 
+  var bean6 = MutableLiveData<FTest>().apply { value = FTest() }
+
+  val bean7 = MLDFTest().apply { text.value = "9527" }
   //================= ===================
 
   class FTest {
@@ -25,5 +28,9 @@ class FontVM : BaseVM() {
 
   class OBFTest {
     val text = ObservableField<String>()
+  }
+
+  class MLDFTest {
+    val text = MutableLiveData<String>()
   }
 }
