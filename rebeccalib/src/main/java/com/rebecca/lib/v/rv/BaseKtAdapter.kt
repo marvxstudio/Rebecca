@@ -5,21 +5,23 @@ import android.databinding.ObservableArrayList
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import com.rebecca.list.itf.IBaseListCtr
 
-abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ObservableArrayList<VM>) : Adapter<BaseRvVH<*, VM>>(), MutableList<VM> by list {
-
-  //================================================
-  open var openAutoNotify = true
+abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ObservableArrayList<VM>) : Adapter<BaseRvVH<*, VM>>(), IBaseListCtr<VM>, MutableList<VM> by list {
 
   //================================================
-  abstract fun update(list: ArrayList<VM>, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
 
-  abstract fun set(vm: VM, index: Int, type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
+  //================================================
 
-  abstract fun removeType(type: Int, isNotify: Boolean = openAutoNotify): BaseKtAdapter<VM>
+  open fun removeType(type: Int): BaseKtAdapter<VM> = this
 
-  open fun output(): ObservableArrayList<VM> {
-    return list
+  override fun outputList(): ArrayList<VM> = list
+
+  override fun output(index: Int): VM? = if (index in list.indices) get(index) else super.output(index)
+
+  override fun update(list: ArrayList<VM>, index: Int) {
+    clear()
+    addAll(list)
   }
   //================================================
 

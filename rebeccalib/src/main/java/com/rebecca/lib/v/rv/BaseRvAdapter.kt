@@ -35,19 +35,6 @@ abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayL
 
   //=====================  ==========================
 
-  override fun update(list: ArrayList<VM>, isNotify: Boolean): BaseRvAdapter<VM> {
-    this.list.clear()
-    this.list.addAll(list)
-    return this
-  }
-
-  override fun set(vm: VM, index: Int, type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-    return this
-  }
-
-  override fun removeType(type: Int, isNotify: Boolean): BaseRvAdapter<VM> {
-    return this
-  }
   //===================== init ========================
 
   override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
