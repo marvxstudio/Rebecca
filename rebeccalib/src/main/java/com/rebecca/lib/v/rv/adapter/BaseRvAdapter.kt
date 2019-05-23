@@ -1,11 +1,14 @@
-package com.rebecca.lib.v.rv
+package com.rebecca.lib.v.rv.adapter
 
 import android.content.Context
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import android.support.v7.widget.RecyclerView
+import com.rebecca.lib.v.rv.BaseListWatcher
+import com.rebecca.lib.v.rv.BaseRvVM
+import com.rebecca.lib.v.rv.vh.BaseRvVH
 
-abstract class BaseRvAdapter<VM : BaseRvVM> : BaseKtAdapter<VM>(ObservableArrayList<VM>()) {
+abstract class BaseRvAdapter<VM : BaseRvVM> : BasePercentAdapter<VM>(ObservableArrayList<VM>()) {
 
   //=====================  ==========================
 

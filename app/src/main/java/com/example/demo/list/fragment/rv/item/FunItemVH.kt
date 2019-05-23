@@ -6,7 +6,7 @@ import com.example.demo.R
 import com.example.demo.zbase.Clicker
 import com.example.demo.databinding.FunItemVhBinding
 import com.example.demo.list.fragment.rv.RvVMBox
-import com.rebecca.lib.v.rv.BaseRvVH
+import com.rebecca.lib.v.rv.vh.BaseRvVH
 
 class FunItemVH(var vg: ViewGroup) : BaseRvVH<FunItemVhBinding, RvVMBox>(vg, R.layout.fun_item_vh), Clicker {
     //=============================================

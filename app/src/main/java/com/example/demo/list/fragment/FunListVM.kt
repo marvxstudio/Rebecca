@@ -5,7 +5,7 @@ import com.example.demo.list.fragment.rv.item.ItemAddVM
 import com.example.demo.list.fragment.rv.item.ItemRemoveVM
 import com.example.demo.list.fragment.rv.item.ItemStartVM
 import com.example.demo.router.RouterUrl
-import com.rebecca.lib.v.rv.BaseRvAdapter
+import com.rebecca.lib.v.rv.adapter.BaseRvAdapter
 import com.rebecca.lib.v.rv.VHType
 import com.rebecca.lib.zbase.vm.BaseVM
 

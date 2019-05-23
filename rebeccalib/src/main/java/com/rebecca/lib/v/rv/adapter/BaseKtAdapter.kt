@@ -1,10 +1,12 @@
-package com.rebecca.lib.v.rv
+package com.rebecca.lib.v.rv.adapter
 
 import android.content.Context
 import android.databinding.ObservableArrayList
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
+import com.rebecca.lib.v.rv.BaseRvVM
+import com.rebecca.lib.v.rv.vh.BaseRvVH
 import com.rebecca.list.itf.IBaseListCtr
 
 abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ObservableArrayList<VM>) : Adapter<BaseRvVH<*, VM>>(), IBaseListCtr<VM>, MutableList<VM> by list {

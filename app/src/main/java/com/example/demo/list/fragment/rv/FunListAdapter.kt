@@ -4,9 +4,9 @@ import android.view.ViewGroup
 import com.example.demo.list.fragment.rv.footer.FunFooterVH
 import com.example.demo.list.fragment.rv.header.FunHeaderVH
 import com.example.demo.list.fragment.rv.item.FunItemVH
-import com.rebecca.lib.v.rv.BaseRvAdapter
-import com.rebecca.lib.v.rv.BaseRvVH
 import com.rebecca.lib.v.rv.VHType
+import com.rebecca.lib.v.rv.adapter.BaseRvAdapter
+import com.rebecca.lib.v.rv.vh.BaseRvVH
 
 class FunListAdapter : BaseRvAdapter<RvVMBox>() {
   //=========================  =================================
