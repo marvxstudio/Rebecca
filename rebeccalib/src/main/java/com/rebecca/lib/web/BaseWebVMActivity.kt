@@ -8,14 +8,11 @@ abstract class BaseWebVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseVMAct
   //=========================  =================================
 
   //=========================  =================================
+  protected val weber by lazy { onCreateWeber() }
 
-  abstract fun onCreateWeb()
+  abstract fun onCreateWeber(): BaseWeber
   //========================= init  =================================
 
-  override fun onInitView() {
-    super.onInitView()
-    onCreateWeb()
-  }
   //========================= main ==================================
 
 }
