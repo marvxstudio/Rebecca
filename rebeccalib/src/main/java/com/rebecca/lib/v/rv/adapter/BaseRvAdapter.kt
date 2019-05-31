@@ -8,7 +8,7 @@ import com.rebecca.lib.v.rv.BaseListWatcher
 import com.rebecca.lib.v.rv.BaseRvVM
 import com.rebecca.lib.v.rv.vh.BaseRvVH
 
-abstract class BaseRvAdapter<VM : BaseRvVM> : BasePercentAdapter<VM>(ObservableArrayList<VM>()) {
+abstract class BaseRvAdapter<VM : BaseRvVM>(list: ObservableArrayList<VM> = ObservableArrayList()) : BasePercentAdapter<VM>(list) {
 
   //=====================  ==========================
 

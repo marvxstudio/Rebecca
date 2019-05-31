@@ -11,7 +11,7 @@ class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
   override var mLayoutId: Int = R.layout.fun_list_fragment
   //=========================  =================================
   private val adapter by lazy {
-    FunListAdapter().apply { update(activity!!, ui.rv, GridLayoutManager(activity, 10)) }
+    FunListAdapter(vm.funList).apply { update(activity!!, ui.rv, GridLayoutManager(activity, 10)) }
   }
 
 //========================= rv =================================

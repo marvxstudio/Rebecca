@@ -1,5 +1,6 @@
 package com.example.demo.list.fragment
 
+import android.databinding.ObservableArrayList
 import com.example.demo.list.fragment.rv.RvVMBox
 import com.example.demo.list.fragment.rv.item.ItemAddVM
 import com.example.demo.list.fragment.rv.item.ItemRemoveVM
@@ -13,11 +14,11 @@ class FunListVM : BaseVM() {
 
   //======================== ===================
   lateinit var watcher: Watcher
-  lateinit var funList: ArrayList<RvVMBox>
+  val funList: ObservableArrayList<RvVMBox> = ObservableArrayList()
   //======================== ===================
 
   fun createList(adapter: BaseRvAdapter<RvVMBox>) {
-    funList = ArrayList()
+    funList.clear()
     funList.add(RvVMBox(VHType.HEADER).set(ItemStartVM()))
 
     funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.COMMON).setName("default")))
@@ -33,7 +34,7 @@ class FunListVM : BaseVM() {
     funList.add(RvVMBox().set(ItemAddVM().set(adapter).setName("add item")))
     funList.add(RvVMBox(VHType.FOOTER).set(ItemStartVM()))
 
-    watcher.onUpdate(funList)
+//    watcher.onUpdate(funList)
   }
 
   //======================== ===================

@@ -1,5 +1,6 @@
 package com.example.demo.list.fragment.rv
 
+import android.databinding.ObservableArrayList
 import android.view.ViewGroup
 import com.example.demo.list.fragment.rv.footer.FunFooterVH
 import com.example.demo.list.fragment.rv.header.FunHeaderVH
@@ -8,7 +9,7 @@ import com.rebecca.lib.v.rv.VHType
 import com.rebecca.lib.v.rv.adapter.BaseRvAdapter
 import com.rebecca.lib.v.rv.vh.BaseRvVH
 
-class FunListAdapter : BaseRvAdapter<RvVMBox>() {
+class FunListAdapter(list: ObservableArrayList<RvVMBox>) : BaseRvAdapter<RvVMBox>(list) {
   //=========================  =================================
 
   //=========================  =================================
