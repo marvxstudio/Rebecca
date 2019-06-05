@@ -8,6 +8,8 @@ interface IBaseListCtr<B> {
 
   fun output(): B? = null
 
+  fun update(index: Int) {}
+
   fun output(index: Int): B? = null
 
 }
