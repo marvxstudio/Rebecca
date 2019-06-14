@@ -2,9 +2,11 @@ package com.rebecca.list.itf
 
 interface IBaseListCtr<B> {
 
+  fun outputList(): ArrayList<B>
+
   fun update(list: ArrayList<B>, index: Int = -1)
 
-  fun outputList(): ArrayList<B>
+  fun update(list: ArrayList<B>, bean: B) {}
 
   fun output(): B? = null
 
