@@ -2,14 +2,16 @@ package com.rebecca.lib.zbase
 
 interface ICreate {
 
-    //==============================================
-    fun onInit()
+  //==============================================
+  fun onInit()
 
-    fun onInitView()
+  fun onInitView()
 
-    fun onInitData()
+  fun onInitData()
 
-    //fun onCreateVM(context: Context,classVM:Class<VM : viewmodel>)
+  fun onDestroyVM()
 
-    //fun onCreateBinding()
+  //fun onCreateVM(context: Context,classVM:Class<VM : viewmodel>)
+
+  //fun onCreateBinding()
 }

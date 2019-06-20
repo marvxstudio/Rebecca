@@ -12,39 +12,39 @@ import com.rebecca.lib.zbase.ICreate
 import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate,
-        LifecycleOwner {
-    //=========================  =================================
-    lateinit var ui: VDB
-    lateinit var vm: VM
-    //=========================  =================================
-    abstract var mLayoutId: Int
+  LifecycleOwner {
+  //=========================  =================================
+  lateinit var ui: VDB
+  lateinit var vm: VM
+  //=========================  =================================
+  abstract var mLayoutId: Int
 
-    //=========================  =================================
-    open fun createVM(modelClass: Class<VM>): VM {
-        vm = ViewModelProviders.of(this).get(modelClass)
-        return onCreateVM(vm)
+  //=========================  =================================
+  open fun createVM(modelClass: Class<VM>): VM {
+    vm = ViewModelProviders.of(this).get(modelClass)
+    return onCreateVM(vm)
+  }
+
+  open fun onCreateVM(vm: VM): VM {
+
+    return vm
+  }
+
+  override fun onDestroyVM() {
+    vm.onDestroy()
+  }
+
+  //=========================  =================================
+  override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
+    ui.setLifecycleOwner(this)
+    return ui.root
+  }
+
+  override fun onDestroy() {
+    if (::vm.isInitialized) {
+      onDestroyVM()
     }
-
-    open fun onCreateVM(vm: VM): VM {
-
-        return vm
-    }
-
-    open fun onDestroyVM() {
-        if (::vm.isInitialized) {
-            vm.onDestroy()
-        }
-    }
-
-    //=========================  =================================
-    override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
-        ui.setLifecycleOwner(this)
-        return ui.root
-    }
-
-    override fun onDestroy() {
-        onDestroyVM()
-        super.onDestroy()
-    }
+    super.onDestroy()
+  }
 }

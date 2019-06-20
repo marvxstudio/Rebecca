@@ -22,7 +22,7 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
     vm.bean3.get()?.text = c
     vm.bean4.set(FontVM.FTest().apply { text = c })
     vm.bean5.value = FontVM.FTest().apply { text = c }
-    vm.bean6.value?.text=c
+    vm.bean6.value?.text = c
 
     vm.bean7.text.value = c
     Loger.show("""=
@@ -44,6 +44,12 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
     super.onInitView()
     ui.vm = createVM(FontVM::class.java)
     ui.clicker = this
+    var k: String? = null
+    k?.let {
+      Loger.show("不为空= $k")
+    } ?: k.let {
+      Loger.show(it.toString())
+    }
 
   }
   //========================= main ==================================
