@@ -12,6 +12,9 @@ import com.rebecca.lib.zbase.activity.BaseVMActivity
 @Route(path = RouterUrl.App.Font)
 class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseVMActivity<FontActivityBinding, FontVM>(), Clicker {
   //=========================  =================================
+
+  override val classVM: Class<FontVM> = FontVM::class.java
+  //=========================  =================================
   var i = 0
 
   override fun onClick(v: View?) {

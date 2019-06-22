@@ -8,6 +8,9 @@ import com.example.demo.list.fragment.rv.RvVMBox
 import com.rebecca.lib.zbase.fragment.BaseVMFragment
 
 class FunListFragment : BaseVMFragment<FunListFragmentBinding, FunListVM>() {
+  //=========================  =================================
+
+  override val classVM: Class<FunListVM> = FunListVM::class.java
   override var mLayoutId: Int = R.layout.fun_list_fragment
   //=========================  =================================
   private val adapter by lazy {

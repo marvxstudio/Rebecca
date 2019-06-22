@@ -12,11 +12,13 @@ class DialogListActivity(override var mLayoutId: Int = R.layout.fl_layout) : Bas
   DialogListVM>() {
   //=========================  =================================
 
+  override val classVM: Class<DialogListVM> = DialogListVM::class.java
   //=========================  =================================
 
   //========================= init  =================================
 
   override fun onInitView() {
+
     super.onInitView()
     DialogListFragment().addTo(ui.flFragment.id, supportFragmentManager)
   }

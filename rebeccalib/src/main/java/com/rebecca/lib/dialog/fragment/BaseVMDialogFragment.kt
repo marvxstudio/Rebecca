@@ -11,21 +11,23 @@ import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
 import com.rebecca.lib.zbase.vm.BaseVM
 
-abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate,
-  LifecycleOwner {
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate, LifecycleOwner {
   //=========================  =================================
-  lateinit var ui: VDB
-  lateinit var vm: VM
+  protected lateinit var ui: VDB
   //=========================  =================================
-  abstract var mLayoutId: Int
+  protected abstract val classVM: Class<VM>
+  val vm: VM by lazy { createVM() }
 
   //=========================  =================================
-  open fun createVM(modelClass: Class<VM>): VM {
-    vm = ViewModelProviders.of(this).get(modelClass)
+  protected abstract var mLayoutId: Int
+
+  //=========================  =================================
+  protected fun createVM(modelClass: Class<VM> = classVM): VM {
+    val vm = ViewModelProviders.of(this).get(modelClass)
     return onCreateVM(vm)
   }
 
-  open fun onCreateVM(vm: VM): VM {
+  protected open fun onCreateVM(vm: VM): VM {
 
     return vm
   }
@@ -42,9 +44,9 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDM
   }
 
   override fun onDestroy() {
-    if (::vm.isInitialized) {
-      onDestroyVM()
-    }
+    //if (::vm.isInitialized) {
+    onDestroyVM()
+    //}
     super.onDestroy()
   }
 }

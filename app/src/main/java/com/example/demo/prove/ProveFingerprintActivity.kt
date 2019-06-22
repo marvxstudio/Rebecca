@@ -11,6 +11,7 @@ open class ProveFingerprintActivity<K : String>(override var mLayoutId: Int = R.
 
   //=========================  =================================
 
+  override val classVM: Class<BaseVM> = BaseVM::class.java
   val pf = ProveFinger(this)
   //=========================  =================================
   override fun onClick(v: View?) {

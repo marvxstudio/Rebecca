@@ -11,6 +11,7 @@ import com.rebecca.lib.tools.Loger
 class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBinding, MaterialDialogVM>(), Clicker {
   //=========================  =================================
   var age = 0
+  override val classVM: Class<MaterialDialogVM> = MaterialDialogVM::class.java
   override var mLayoutId: Int = R.layout.material_dialog_fragment
   //=========================  =================================
   override fun onClick(v: View?) {

@@ -15,6 +15,10 @@ import io.reactivex.disposables.Disposable
 @Route(path = RouterUrl.App.RX)
 class RxActivity(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMActivity<RxActivityBinding, RxVM>() {
   //=========================  =================================
+
+  override val classVM: Class<RxVM> = RxVM::class.java
+
+  //=========================  =================================
   class And {
     lateinit var peo: Peo
   }
@@ -31,6 +35,7 @@ class RxActivity(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMAct
         var k: And? = And()
         k?.peo = Peo()
         emitter.onNext(k!!)
+
       }
     })
     observable.subscribe(object : Observer<And> {

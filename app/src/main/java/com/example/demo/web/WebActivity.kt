@@ -13,6 +13,7 @@ import com.rebecca.lib.zbase.vm.BaseVM
 class WebActivity(override var mLayoutId: Int = R.layout.web_activity) : BaseWebVMActivity<WebActivityBinding, BaseVM>() {
   //=========================  =================================
 
+  override val classVM: Class<BaseVM> = BaseVM::class.java
   val url = "https://www.baidu.com"//"https://www.cnblogs.com/tinyphp/p/3858997.html" //"www.baidu.com"
 
   //=========================  =================================

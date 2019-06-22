@@ -10,6 +10,7 @@ class FunListActivity(override var mLayoutId: Int = R.layout.fun_list_activity) 
 
   //=========================  =================================
 
+  override val classVM: Class<FunListActivityVM> = FunListActivityVM::class.java
   //=========================  =================================
   fun initFragment() {
     var ft = supportFragmentManager.beginTransaction()

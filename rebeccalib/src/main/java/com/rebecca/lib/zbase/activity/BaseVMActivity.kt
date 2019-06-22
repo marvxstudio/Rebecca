@@ -7,18 +7,20 @@ import com.rebecca.lib.zbase.vm.BaseVM
 
 abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
   //=========================  =================================
-  lateinit var ui: VDB
-  lateinit var vm: VM
+  protected lateinit var ui: VDB
+  //=========================  =================================
+  protected abstract val classVM: Class<VM>
+  val vm: VM by lazy { createVM() }
   //=========================  =================================
   //=========================  =================================
 
   //=========================init  =================================
-  fun createVM(modelClass: Class<VM>): VM {
-    vm = ViewModelProviders.of(this).get(modelClass)
+  protected fun createVM(modelClass: Class<VM> = classVM): VM {
+    val vm = ViewModelProviders.of(this).get(modelClass)
     return onCreateVM(vm)
   }
 
-  open fun onCreateVM(vm: VM): VM {
+  protected open fun onCreateVM(vm: VM): VM {
     return vm
   }
 
@@ -33,9 +35,9 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
   }
 
   override fun onDestroy() {
-    if (::vm.isInitialized) {
-      onDestroyVM()
-    }
+    //if (::vm.isInitialized) {
+    onDestroyVM()
+    //}
     super.onDestroy()
   }
 }

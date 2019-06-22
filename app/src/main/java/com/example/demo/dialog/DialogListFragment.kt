@@ -10,6 +10,8 @@ import com.rebecca.lib.zbase.fragment.BaseVMFragment
 class DialogListFragment : BaseVMFragment<DialogListFragmentBinding, DialogListVM>(), Clicker {
 
   //====================================================
+
+  override val classVM: Class<DialogListVM> = DialogListVM::class.java
   override var mLayoutId: Int = R.layout.dialog_list_fragment
   //====================================================
   val dialog = MaterialDialogFragment()
