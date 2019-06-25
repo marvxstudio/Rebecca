@@ -21,14 +21,12 @@ abstract class BaseKtFragment : Fragment(), ICreate {
 
   open var isTouchThrough = false
   //=========================  =================================
-  open fun addTo(id: Int, fm: FragmentManager, addToBackStack: Boolean = false, tag: String = mTag) {
-    fm.beginTransaction().let { ft ->
-      ft.add(id, this, tag)
-      if (addToBackStack) {
-        ft.addToBackStack(mTag)
-      }
-      ft.commit()
+  open fun addTo(id: Int, fm: FragmentManager, canPop: Boolean = false, tag: String = mTag, ft: FragmentTransaction = fm.beginTransaction()) {
+    ft.add(id, this, tag)
+    if (canPop) {
+      ft.addToBackStack(mTag)
     }
+    ft.commit()
   }
 
   open fun pop(fm: FragmentManager, flag: Int = 0) {
@@ -40,8 +38,8 @@ abstract class BaseKtFragment : Fragment(), ICreate {
 //    }
   }
 
-  open fun remove(fm: FragmentManager) {
-    fm.beginTransaction().remove(this).commit()
+  open fun remove(fm: FragmentManager, ft: FragmentTransaction = fm.beginTransaction()) {
+    ft.remove(this).commit()
   }
   //=========================  =================================
 
