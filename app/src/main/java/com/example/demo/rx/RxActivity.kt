@@ -3,6 +3,7 @@ package com.example.demo.rx
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.demo.R
 import com.example.demo.databinding.RxActivityBinding
+import com.example.demo.list.fragment.FunListFragment
 import com.example.demo.router.RouterUrl
 import com.rebecca.lib.tools.Loger
 import com.rebecca.lib.zbase.activity.BaseVMActivity
@@ -65,6 +66,7 @@ class RxActivity(override var mLayoutId: Int = R.layout.rx_activity) : BaseVMAct
     super.onInitView()
     ui.vm = createVM(RxVM::class.java)
     rxStart()
+    FunListFragment().addTo(ui.fl.id, supportFragmentManager)
   }
   //========================= main ==================================
 
