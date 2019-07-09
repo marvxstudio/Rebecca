@@ -5,13 +5,20 @@ import com.rebecca.lib.v.rv.BaseRvVM
 
 abstract class BaseItemVM : BaseRvVM() {
 
-    val name = ObservableField<String>()
+  val name = ObservableField<String>()
 
-    open fun onClick() {
-    }
+  var watcher: Watcher? = null
 
-    fun setName(name: String): BaseItemVM {
-        this.name.set(name)
-        return this
-    }
+  open fun onClick() {
+    watcher?.onClick()
+  }
+
+  fun setName(name: String): BaseItemVM {
+    this.name.set(name)
+    return this
+  }
+
+  interface Watcher {
+    fun onClick()
+  }
 }

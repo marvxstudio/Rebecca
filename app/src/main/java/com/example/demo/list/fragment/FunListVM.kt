@@ -1,44 +1,57 @@
 package com.example.demo.list.fragment
 
 import android.databinding.ObservableArrayList
-import com.example.demo.list.fragment.rv.RvVMBox
+import com.example.demo.list.fragment.rv.base.BaseItemVM
 import com.example.demo.list.fragment.rv.item.ItemAddVM
 import com.example.demo.list.fragment.rv.item.ItemRemoveVM
 import com.example.demo.list.fragment.rv.item.ItemStartVM
 import com.example.demo.router.RouterUrl
+import com.rebecca.lib.v.rv.BaseRvVM
 import com.rebecca.lib.v.rv.VHType
-import com.rebecca.lib.v.rv.adapter.BaseRvAdapter
 import com.rebecca.lib.zbase.vm.BaseVM
 
 class FunListVM : BaseVM() {
 
   //======================== ===================
-  lateinit var watcher: Watcher
-  val funList: ObservableArrayList<RvVMBox> = ObservableArrayList()
+  val funList: ObservableArrayList<BaseRvVM> = ObservableArrayList()
   //======================== ===================
 
-  fun createList(adapter: BaseRvAdapter<RvVMBox>) {
-    funList.clear()
-    funList.add(RvVMBox(VHType.HEADER).set(ItemStartVM()))
+  fun createList() {
+    funList.let {
+      it.clear()
+      it.add(ItemStartVM(VHType.HEADER))
 
-    funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.COMMON).setName("default")))
-    funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.DIALOG).setName("dialog list")))
-    funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.RX).setName("RX")))
-    funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.Font).setName("Font")))
-    funList.add(RvVMBox().set(ItemStartVM().setPath(RouterUrl.App.Web).setName("Web")))
-    funList.add(RvVMBox().set(ItemRemoveVM().also {
-      it.adapter = adapter
-      it.setName("remove item")
-    }))
+      it.add(ItemStartVM().setPath(RouterUrl.App.COMMON).setName("default"))
+      it.add(ItemStartVM().setPath(RouterUrl.App.DIALOG).setName("dialog list"))
+      it.add(ItemStartVM().setPath(RouterUrl.App.RX).setName("RX"))
+      it.add(ItemStartVM().setPath(RouterUrl.App.Font).setName("Font"))
+      it.add(ItemStartVM().setPath(RouterUrl.App.Web).setName("Web"))
+      ItemRemoveVM().apply {
+        watcher = object : BaseItemVM.Watcher {
+          override fun onClick() {
+            if (it.isNotEmpty()) {
+              it.removeAt(it.lastIndex - 1)
+            }
+          }
+        }
+        setName("remove item")
+        it.add(this)
+      }
 
-    funList.add(RvVMBox().set(ItemAddVM().set(adapter).setName("add item")))
-    funList.add(RvVMBox(VHType.FOOTER).set(ItemStartVM()))
+      ItemAddVM().setName("add item").apply {
+        watcher = object : BaseItemVM.Watcher {
+          override fun onClick() {
+            val index = if (it.isNotEmpty()) it.lastIndex else 0
+            it.add(index, this@apply)
+          }
+        }
 
-//    watcher.onUpdate(funList)
+        it.add(this@apply)
+      }
+      it.add(ItemStartVM(VHType.FOOTER))
+    }
   }
 
   //======================== ===================
-  interface Watcher {
-    fun onUpdate(list: ArrayList<RvVMBox>)
-  }
+
 }

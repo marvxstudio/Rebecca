@@ -6,7 +6,7 @@ import android.databinding.ObservableField
 import android.support.v7.widget.RecyclerView
 import com.rebecca.lib.v.rv.BaseListWatcher
 import com.rebecca.lib.v.rv.BaseRvVM
-import com.rebecca.lib.v.rv.vh.BaseRvVH
+import com.rebecca.lib.v.rv.vh.BaseKtVH
 
 abstract class BaseRvAdapter<VM : BaseRvVM>(list: ObservableArrayList<VM> = ObservableArrayList()) : BasePercentAdapter<VM>(list) {
 
@@ -40,17 +40,15 @@ abstract class BaseRvAdapter<VM : BaseRvVM>(list: ObservableArrayList<VM> = Obse
 
   //===================== init ========================
 
-  override fun onBindViewHolder(holder: BaseRvVH<*, VM>, position: Int) {
-    holder.updateVM(list.get(position))
+  override fun onBindViewHolder(holder: BaseKtVH, position: Int) {
+    holder.updateData(list.get(position))
   }
 
   override fun getItemViewType(position: Int): Int {
     return list.get(position).viewType
   }
 
-  override fun getItemCount(): Int {
-    return list.size
-  }
+  override fun getItemCount(): Int = list.size
 
   override fun getItemId(position: Int): Long {
     var index = super.getItemId(position)
