@@ -1,6 +1,5 @@
 package com.rebecca.lib.dialog.fragment.base
 
-import android.app.Dialog
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.graphics.Color
@@ -8,10 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import com.rebecca.lib.dialog.IDialogCanceClicker
 import com.rebecca.lib.dialog.IDialogEnterClicker
 import com.rebecca.lib.zbase.ICreate
@@ -27,7 +23,8 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
 
   open var openTouchOutside = true
 
-  open var widthPCT = 0.75
+  open var widthPCT = 0.75f
+  open var heightPCT = -1f
   //=========================  =================================
   var mRootView: View? = null
 
@@ -46,14 +43,23 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     dialog.setCanceledOnTouchOutside(openTouchOutside)
   }
 
-  open fun onInitWindow(dialog: Dialog? = this.dialog, window: Window? = dialog?.window) {
+  open fun onInitWindow(window: Window? = dialog?.window) {
     window?.let {
       if (openTitle == false) {
         val dm = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(dm)
-        val width: Int = (dm.widthPixels * widthPCT).toInt()
-        it.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val w = if (widthPCT in 0f..1f) (dm.widthPixels * widthPCT).toInt() else ViewGroup.LayoutParams.WRAP_CONTENT
+        val h = if (heightPCT in 0f..1f) (dm.heightPixels * heightPCT).toInt() else ViewGroup.LayoutParams.WRAP_CONTENT
+
+        onUpdateWindowSize(w, h, window = it)
       }
+    }
+  }
+
+  open fun onUpdateWindowSize(w: Int, h: Int, gravity: Int = Gravity.CENTER, window: Window? = dialog?.window) {
+    window?.let {
+      it.setGravity(gravity)
+      it.setLayout(w, h)
     }
   }
 
