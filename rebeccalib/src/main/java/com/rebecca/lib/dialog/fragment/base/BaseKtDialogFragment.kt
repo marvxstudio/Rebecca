@@ -25,6 +25,7 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
 
   open var widthPCT = 0.75f
   open var heightPCT = -1f
+  open var gravity = Gravity.CENTER
   //=========================  =================================
   var mRootView: View? = null
 
@@ -56,7 +57,7 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     }
   }
 
-  open fun onUpdateWindowSize(w: Int, h: Int, gravity: Int = Gravity.CENTER, window: Window? = dialog?.window) {
+  open fun onUpdateWindowSize(w: Int, h: Int, gravity: Int = this.gravity, window: Window? = dialog?.window) {
     window?.let {
       it.setGravity(gravity)
       it.setLayout(w, h)
