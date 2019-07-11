@@ -18,17 +18,17 @@ class DialogListFragment : BaseVMFragment<DialogListFragmentBinding, DialogListV
 
   //====================================================
   override fun onClick(v: View?) {
-    dialogManager?.add(dialog)
+    dialogManager?.add(MaterialDialogFragment())
   }
 
   //====================================================
   override fun onInitView() {
     super.onInitView()
     ui.clicker = this
-    var each = arrayListOf(0, 1)
+    var each = arrayListOf(0)
     for (k in each) {
 
-      dialogManager?.add(MaterialDialogFragment())
+      dialogManager?.add(dialog)
     }
   }
   //========================= main ==================================

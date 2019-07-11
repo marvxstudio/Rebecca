@@ -27,8 +27,6 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
   open var heightPCT = -1f
   open var gravity = Gravity.CENTER
   //=========================  =================================
-  var mRootView: View? = null
-
   var clickerCancel: IDialogCanceClicker? = null
 
   var clickerEnter: IDialogEnterClicker? = null
@@ -88,15 +86,19 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     onInitDialog()
   }
 
-  open fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  open fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
     return null
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    mRootView = createRootView(inflater, container, savedInstanceState)
+
+    return onCreateRootView(inflater, container, savedInstanceState)
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     onInit()
-    return mRootView
   }
 
   override fun onDismiss(dialog: DialogInterface?) {

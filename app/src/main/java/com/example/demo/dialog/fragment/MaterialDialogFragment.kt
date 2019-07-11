@@ -22,7 +22,7 @@ class MaterialDialogFragment : BaseVMDialogFragment<MaterialDialogFragmentBindin
         age++
         vm.age = age.toString()
 
-        vm.info.postValue(" age:" + vm.age)
+        vm.info.value = (" age:" + vm.age)
         dialogManager?.add(MaterialDialogFragment())
       }
       ui.tvClose -> {

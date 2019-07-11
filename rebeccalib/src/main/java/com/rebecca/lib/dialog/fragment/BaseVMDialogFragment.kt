@@ -37,7 +37,7 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDM
   }
 
   //=========================  =================================
-  override fun createRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  override fun onCreateRootView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     ui = DataBindingUtil.inflate(inflater, mLayoutId, container, false)
     ui.setLifecycleOwner(this)
     return ui.root
