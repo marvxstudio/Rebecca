@@ -22,8 +22,8 @@ class FontVM : BaseVM() {
   val bean7 = MLDFTest().apply { text.value = "9527" }
   //================= ===================
 
-  class FTest {
-    var text = "9527"
+  data class FTest(var text: String = "9527") {
+
   }
 
   class OBFTest {

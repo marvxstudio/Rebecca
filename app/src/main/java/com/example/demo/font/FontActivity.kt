@@ -22,7 +22,13 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
 
     vm.bean1.text = c
     vm.bean2.text.set(c)
-    vm.bean3.get()?.text = c
+//    vm.bean3.get()?.text = c
+    vm.bean3.let {
+      it.get()?.let {
+        it.text = c
+        vm.bean3.set(it.copy())
+      }
+    }
     vm.bean4.set(FontVM.FTest().apply { text = c })
     vm.bean5.value = FontVM.FTest().apply { text = c }
     vm.bean6.value?.text = c
@@ -35,8 +41,8 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
       |bean4= ${vm.bean4.get()?.text}
       |
       |bean5= ${vm.bean5.value?.text}
-      |bean5= ${vm.bean6.value?.text}
-      |bean6= ${vm.bean7.text.value}
+      |bean6= ${vm.bean6.value?.text}
+      |bean7= ${vm.bean7.text.value}
       |""".trimMargin())
   }
   //=========================  =================================
