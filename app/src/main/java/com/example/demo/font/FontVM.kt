@@ -1,7 +1,9 @@
 package com.example.demo.font
 
 import android.arch.lifecycle.MutableLiveData
+import android.databinding.Observable
 import android.databinding.ObservableField
+import com.rebecca.lib.tools.Loger
 import com.rebecca.lib.zbase.vm.BaseVM
 
 class FontVM : BaseVM() {
@@ -13,7 +15,20 @@ class FontVM : BaseVM() {
 
   var bean3 = ObservableField<FTest>(FTest())
 
-  var bean4 = ObservableField<FTest>(FTest())
+  var bean4 = ObservableField<FTest>(FTest()).apply {
+    addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        Loger.show("obs= ${sender.toString()}  id= $propertyId")
+
+      }
+    })
+    addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        Loger.show("obs2= ${sender.toString()}  id= $propertyId")
+
+      }
+    })
+  }
   //================= ===================
   var bean5 = MutableLiveData<FTest>()
 
