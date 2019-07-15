@@ -15,7 +15,7 @@ open class BaseVM : ViewModel() {
   val rxer by lazy { CompositeDisposable() }
 
   //=========================  =================================
-  open fun onBuild(owner: LifecycleOwner): ViewModel {
+  open fun onCreate(owner: LifecycleOwner): ViewModel {
     return this
   }
 

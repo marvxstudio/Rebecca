@@ -59,17 +59,18 @@ class FontVM : BaseVM() {
     Loger.show("livedata bean5= ${it?.text}")
   }
 
-  override fun onBuild(owner: LifecycleOwner): ViewModel {
-    addobs(owner)
-    return super.onBuild(owner)
-  }
-
   fun addobs(owner: LifecycleOwner) {
     bean5.observe(owner, obser)
   }
 
   fun removeobs() {
     bean5.removeObserver(obser)
+  }
+
+  //==================== ===============
+  override fun onCreate(owner: LifecycleOwner): ViewModel {
+    addobs(owner)
+    return super.onCreate(owner)
   }
 
   override fun onDestroy() {

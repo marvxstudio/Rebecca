@@ -17,6 +17,7 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
   //=========================init  =================================
   protected fun createVM(modelClass: Class<VM> = classVM): VM {
     val vm = ViewModelProviders.of(this).get(modelClass)
+    vm.onCreate(this)
     return onCreateVM(vm)
   }
 

@@ -49,11 +49,6 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
 
   //========================= init  =================================
 
-  override fun onCreateVM(vm: FontVM): FontVM {
-    vm.onBuild(this)
-    return super.onCreateVM(vm)
-  }
-
   override fun onInitView() {
     super.onInitView()
     ui.vm = createVM(FontVM::class.java)
