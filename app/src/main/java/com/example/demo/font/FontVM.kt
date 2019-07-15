@@ -1,6 +1,9 @@
 package com.example.demo.font
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.ObservableField
 import com.rebecca.lib.tools.Loger
@@ -22,12 +25,14 @@ class FontVM : BaseVM() {
 
       }
     })
-    addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+    val obsB = object : Observable.OnPropertyChangedCallback() {
       override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
         Loger.show("obs2= ${sender.toString()}  id= $propertyId")
 
       }
-    })
+    }
+    addOnPropertyChangedCallback(obsB)
+    addOnPropertyChangedCallback(obsB)
   }
   //================= ===================
   var bean5 = MutableLiveData<FTest>()
@@ -47,5 +52,29 @@ class FontVM : BaseVM() {
 
   class MLDFTest {
     val text = MutableLiveData<String>()
+  }
+
+  //================= ===================
+  protected val obser = Observer<FTest> {
+    Loger.show("livedata bean5= ${it?.text}")
+  }
+
+  override fun onBuild(owner: LifecycleOwner): ViewModel {
+    addobs(owner)
+    return super.onBuild(owner)
+  }
+
+  fun addobs(owner: LifecycleOwner) {
+    bean5.observe(owner, obser)
+  }
+
+  fun removeobs() {
+    bean5.removeObserver(obser)
+  }
+
+  override fun onDestroy() {
+    removeobs()
+
+    super.onDestroy()
   }
 }
