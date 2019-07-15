@@ -1,5 +1,6 @@
 package com.rebecca.lib.dialog.fragment.base
 
+import android.arch.lifecycle.LifecycleOwner
 import android.content.DialogInterface
 import android.content.DialogInterface.OnDismissListener
 import android.graphics.Color
@@ -115,4 +116,6 @@ abstract class BaseKtDialogFragment : DialogFragment(), ICreate {
     onInitWindow()
   }
 
+  override fun onDestroyVM(owner: LifecycleOwner) {
+  }
 }

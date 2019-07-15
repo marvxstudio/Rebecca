@@ -47,6 +47,4 @@ open class BaseDoubleDialogFragment : BaseKtDialogFragment() {
 
   //=========================  =================================
 
-  override fun onDestroyVM() {
-  }
 }

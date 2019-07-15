@@ -1,5 +1,6 @@
 package com.rebecca.lib.zbase.activity
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -25,8 +26,8 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
     return vm
   }
 
-  override fun onDestroyVM() {
-    vm.onDestroy()
+  override fun onDestroyVM(owner: LifecycleOwner) {
+    vm.onDestroy(owner)
   }
 
   override fun onInit() {
@@ -36,9 +37,7 @@ abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivi
   }
 
   override fun onDestroy() {
-    //if (::vm.isInitialized) {
-    onDestroyVM()
-    //}
+    onDestroyVM(this)
     super.onDestroy()
   }
 }

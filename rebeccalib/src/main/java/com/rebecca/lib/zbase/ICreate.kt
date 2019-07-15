@@ -1,5 +1,7 @@
 package com.rebecca.lib.zbase
 
+import android.arch.lifecycle.LifecycleOwner
+
 interface ICreate {
 
   //==============================================
@@ -9,7 +11,7 @@ interface ICreate {
 
   fun onInitData()
 
-  fun onDestroyVM()
+  fun onDestroyVM(owner: LifecycleOwner)
 
   //fun onCreateVM(context: Context,classVM:Class<VM : viewmodel>)
 

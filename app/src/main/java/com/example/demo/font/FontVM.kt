@@ -73,9 +73,9 @@ class FontVM : BaseVM() {
     return super.onCreate(owner)
   }
 
-  override fun onDestroy() {
+  override fun onDestroy(owner: LifecycleOwner) {
     removeobs()
 
-    super.onDestroy()
+    super.onDestroy(owner)
   }
 }

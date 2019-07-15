@@ -33,8 +33,9 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDM
     return vm
   }
 
-  override fun onDestroyVM() {
-    vm.onDestroy()
+  override fun onDestroyVM(owner: LifecycleOwner) {
+    super.onDestroyVM(owner)
+    vm.onDestroy(owner)
   }
 
   //=========================  =================================
@@ -45,9 +46,7 @@ abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDM
   }
 
   override fun onDestroy() {
-    //if (::vm.isInitialized) {
-    onDestroyVM()
-    //}
+    onDestroyVM(this)
     super.onDestroy()
   }
 }

@@ -24,7 +24,7 @@ open class BaseVM : ViewModel() {
     rxer.add(obs)
   }
 
-  open fun onDestroy() {
+  open fun onDestroy(owner: LifecycleOwner) {
     rxer.clear()
   }
   //========================= init  =================================
