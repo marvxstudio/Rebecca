@@ -1,27 +1,31 @@
 package com.rebecca.lib.zbase.fragment
 
 abstract class BaseLazyFragment : BaseDMFragment() {
-    //=========================  =================================
+  //=========================  =================================
 
-    //=========================  =================================
-    var isLoaded: Boolean = false//false=未加载
+  //=========================  =================================
+  protected var isLoaded: Boolean = false//false=未加载
 
-    //=========================  =================================
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        onInit()
+  //=========================  =================================
+  override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+    super.setUserVisibleHint(isVisibleToUser)
+    onInit()
+  }
+
+  override fun onInit() {
+    if (isStartInit()) {
+      super.onInit()
+      isLoaded = true
     }
+  }
 
-    override fun onInit() {
-        if (isStartInit()) {
-            super.onInit()
-            isLoaded = true
-        }
-    }
+  open fun isStartInit(): Boolean {//懒加载条件
+    return userVisibleHint && mRootView != null && isLoaded == false
+  }
+  //========================= main ==================================
 
-    open fun isStartInit(): Boolean {//懒加载条件
-        return userVisibleHint && mRootView != null && isLoaded == false
-    }
-    //========================= main ==================================
-
+  override fun onDestroy() {
+    super.onDestroy()
+    isLoaded = false
+  }
 }

@@ -60,5 +60,11 @@
    android:layout_height="wrap_content"
    android:fontFamily="@font/num"
    android:text="@{vm.bean7.text}" />
+
+  <TextView
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:fontFamily="@font/num"
+   android:text="@{vm.bean8.k}" />
  </LinearLayout>
 </layout>

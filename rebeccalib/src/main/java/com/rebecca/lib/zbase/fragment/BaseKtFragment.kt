@@ -74,16 +74,16 @@ abstract class BaseKtFragment : Fragment(), ICreate {
   //=========================main ==================================
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    if (mRootView == null) {
-      mRootView = onCreateRootView(inflater, container, savedInstanceState)
-    }
-    else {
-      val viewparent = mRootView?.parent
-      if (viewparent != null && viewparent is ViewGroup) {
-        val vg: ViewGroup? = mRootView?.getParent() as ViewGroup
-        vg?.removeView(mRootView)
-      }
-    }
+//    if (mRootView == null) {
+    mRootView = onCreateRootView(inflater, container, savedInstanceState)
+//    }
+//    else {
+//      val viewparent = mRootView?.parent
+//      if (viewparent != null && viewparent is ViewGroup) {
+//        val vg: ViewGroup? = mRootView?.getParent() as ViewGroup
+//        vg?.removeView(mRootView)
+//      }
+//    }
     return mRootView
   }
 

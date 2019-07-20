@@ -40,6 +40,7 @@ class FontVM : BaseVM() {
   var bean6 = MutableLiveData<FTest>().apply { value = FTest() }
 
   val bean7 = MLDFTest().apply { text.value = "9527" }
+  val bean8: OBFTest? = null
   //================= ===================
 
   data class FTest(var text: String = "9527") {
@@ -48,6 +49,7 @@ class FontVM : BaseVM() {
 
   class OBFTest {
     val text = ObservableField<String>()
+    var k: String? = null
   }
 
   class MLDFTest {
