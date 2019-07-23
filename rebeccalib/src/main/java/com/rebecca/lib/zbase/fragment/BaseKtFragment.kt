@@ -91,4 +91,9 @@ abstract class BaseKtFragment : Fragment(), ICreate {
     super.onViewCreated(view, savedInstanceState)
     onInit()
   }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    mRootView = null
+  }
 }
