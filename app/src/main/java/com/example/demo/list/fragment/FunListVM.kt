@@ -26,6 +26,7 @@ class FunListVM : BaseVM() {
       it.add(ItemStartVM().setPath(RouterUrl.App.RX).setName("RX"))
       it.add(ItemStartVM().setPath(RouterUrl.App.Font).setName("Font"))
       it.add(ItemStartVM().setPath(RouterUrl.App.Web).setName("Web"))
+      it.add(ItemStartVM().setPath(RouterUrl.App.Routine).setName("Routine"))
       ItemRemoveVM().apply {
         watcher = object : BaseItemVM.Watcher {
           override fun onClick() {

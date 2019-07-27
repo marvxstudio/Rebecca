@@ -8,12 +8,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-open class RXTimeWalker(var period: Long = 1000, var delay: Long = 0) : BaseCtr(), ITimeWalker {
+open class WalkerTime(var period: Long = 1000, var delay: Long = 0) : BaseCtr(), IWalkerTime {
 
   //================ ====================
   var scheduler: Scheduler = AndroidSchedulers.mainThread()
   //================ ====================
-  var watcher: ITimeWalker.Watcher? = null
+  var watcher: IWalkerTime.Watcher? = null
   protected var walker: Disposable? = null
   //================ ====================
 
@@ -42,5 +42,19 @@ open class RXTimeWalker(var period: Long = 1000, var delay: Long = 0) : BaseCtr(
         }
     }
   }
-  //================ ====================
+
+  fun start(per: Long, delay: Long, onUpdate: () -> Unit, onFinish: () -> Unit, canKeepWalking: () -> Boolean = { false }, isNew: Boolean = false) {
+
+    val dis = Flowable.intervalRange(0, 2, 1000, 1000, TimeUnit.MILLISECONDS)
+      .observeOn(scheduler)
+      .subscribe({
+        onUpdate()
+
+      }, {}, {
+        onFinish()
+      })
+
+  }
+
+//================ ====================
 }

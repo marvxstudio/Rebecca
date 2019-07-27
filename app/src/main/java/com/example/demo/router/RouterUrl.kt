@@ -16,5 +16,6 @@ class RouterUrl {
     const val RX = model + "RX" + ACTIVITY
     const val Font = model + "font" + ACTIVITY
     const val Web = model + "Web" + ACTIVITY
+    const val Routine = model + "Routine" + ACTIVITY
   }
 }

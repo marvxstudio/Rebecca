@@ -64,6 +64,11 @@
     <action android:name="android.intent.action.MAIN" />
    </intent-filter>
   </activity>
+  <activity android:name=".walker.time.RoutineActivity">
+   <intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+   </intent-filter>
+  </activity>
  </application>
 
 </manifest>
