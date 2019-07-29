@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 
-class NetTools {
+class ToolsNet {
     companion object {
 
         fun isNetworkOn(context: Context): Boolean {
