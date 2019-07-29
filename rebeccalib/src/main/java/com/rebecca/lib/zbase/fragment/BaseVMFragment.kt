@@ -22,12 +22,11 @@ abstract class BaseVMFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseLazyFrag
   //=========================init  =================================
   protected fun createVM(modelClass: Class<VM> = classVM): VM {
     val vm = ViewModelProviders.of(this).get(modelClass)
-    vm.onCreate(this)
     return onCreateVM(vm)
   }
 
   protected open fun onCreateVM(vm: VM): VM {
-
+    vm.onCreate(this)
     return vm
   }
 
