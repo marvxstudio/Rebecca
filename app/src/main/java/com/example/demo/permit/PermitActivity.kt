@@ -1,6 +1,5 @@
 package com.example.demo.permit
 
-import android.Manifest
 import com.example.demo.R
 import com.example.demo.databinding.PermitActivityBinding
 import com.example.demo.permit.rv.PermitAdapter
@@ -18,10 +17,6 @@ class PermitActivity(override var mLayoutId: Int = R.layout.permit_activity) : B
   protected val adapter by lazy { PermitAdapter(vm.list) }
   val toaster by lazy { Toaster(this) }
   //=========================  =================================
-  protected fun onPermit() {
-    val pm = Manifest.permission.READ_PHONE_STATE
-
-  }
 
   //========================= init  =================================
 
@@ -60,8 +55,4 @@ class PermitActivity(override var mLayoutId: Int = R.layout.permit_activity) : B
   }
   //========================= main ==================================
 
-  override fun onResume() {
-    super.onResume()
-    onPermit()
-  }
 }
