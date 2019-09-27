@@ -1,72 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <variable
-            name="vm"
-            type="com.example.demo.activity.RebeccaVM"/>
+ xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <variable
-            name="clicker"
-            type="com.example.demo.zbase.Clicker"/>
-    </data>
+ <data>
 
-    <LinearLayout
+  <variable
+   name="vm"
+   type="com.example.demo.activity.RebeccaVM" />
+
+  <variable
+   name="clicker"
+   type="com.example.demo.zbase.Clicker" />
+ </data>
+
+ <LinearLayout
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <EditText
+   android:layout_width="match_parent"
+   android:layout_height="0dp"
+   android:layout_weight="1"
+   android:hint="用户名"
+   android:text="@={vm.bean.userName}" />
+
+  <EditText
+   android:layout_width="match_parent"
+   android:layout_height="0dp"
+   android:layout_weight="1"
+   android:hint="密码"
+   android:text="@={vm.bean.userPassword}" />
+
+  <EditText
+   android:layout_width="match_parent"
+   android:layout_height="0dp"
+   android:layout_weight="1"
+   android:hint="信息"
+   android:text="@={vm.bean.userInfo}" />
+
+  <RelativeLayout
+   android:id="@+id/rl_include"
+   android:layout_width="match_parent"
+   android:layout_height="0dp"
+   android:layout_weight="1">
+
+   <include
+    layout="@layout/rebecca_include"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:clicker="@{clicker}"
+    app:isLogin="@{vm.isLogin}" />
+  </RelativeLayout>
+
+  <!--		<TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="用户名"
-            android:text="@={vm.bean.userName}"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="密码"
-            android:text="@={vm.bean.userPassword}"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="信息"
-            android:text="@={vm.bean.userInfo}"/>
-        <RelativeLayout
-            android:id="@+id/rl_include"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <include
-                layout="@layout/rebecca_include"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:clicker="@{clicker}"
-                app:isLogin="@{vm.isLogin}"/>
-        </RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@{vm.bean.userName}"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@{vm.bean.userPassword}"/>
+    <TextView
 
-        <!--		<TextView
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:text="@{vm.bean.userName}"/>
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:text="@{vm.bean.userPassword}"/>
-          <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@{vm.bean.userInfo}"/>-->
 
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:text="@{vm.bean.userInfo}"/>-->
-
-        <FrameLayout
-            android:id="@+id/fl_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"/>
-    </LinearLayout>
+  <FrameLayout
+   android:id="@+id/fl_fragment"
+   android:layout_width="match_parent"
+   android:layout_height="0dp"
+   android:layout_weight="4" />
+ </LinearLayout>
 </layout>

@@ -25,7 +25,8 @@
    </intent-filter>
   </activity>
 
-  <activity android:name=".list.FunListActivity">
+  <activity android:name=".list.FunListActivity"
+   android:theme="@style/AppThemeSplash">
    <intent-filter>
     <action android:name="android.intent.action.MAIN" />
 
