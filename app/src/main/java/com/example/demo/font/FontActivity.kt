@@ -43,7 +43,7 @@ class FontActivity(override var mLayoutId: Int = R.layout.font_activity) : BaseV
       |bean5= ${vm.bean5.value?.text}
       |bean6= ${vm.bean6.value?.text}
       |bean7= ${vm.bean7.text.value}
-      |""".trimMargin(), isDebug)
+      |""".trimMargin(), isOpen = isDebug)
   }
   //=========================  =================================
 

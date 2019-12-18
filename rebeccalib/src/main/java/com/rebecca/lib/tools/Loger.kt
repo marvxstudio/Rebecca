@@ -1,46 +1,33 @@
 package com.rebecca.lib.tools
 
-import android.content.Context
-import android.content.pm.ApplicationInfo
 import android.util.Log
 
-object Loger {
+object Loger : ILoger {
 
   //==================== =========================
-  enum class Mode {
-    APP_SYNC,
-    OPEN,
-    CLOSE,
-  }
+
+  override var isOpen: Boolean = true
+  override var mTag: String = "++++"
+
   //==================== =========================
 
-  var isOpen = true
-  var mTag: String = "++++"
+  //==================== =========================
 
-  fun show(msg: Any, isOpen: Boolean = this.isOpen, tag: String = mTag) {
+  override fun show(msg: Any, isOpen: Boolean, tag: String, mode: ILoger.ModeLog) {
     if (isOpen) {
-      Log.d(tag, msg.toString())
+      when (mode) {
+        ILoger.ModeLog.D -> Log.d(tag, msg.toString())
+        ILoger.ModeLog.I -> Log.i(tag, msg.toString())
+        ILoger.ModeLog.V -> Log.v(tag, msg.toString())
+        ILoger.ModeLog.W -> Log.w(tag, msg.toString())
+        ILoger.ModeLog.E -> Log.e(tag, msg.toString())
+      }
     }
   }
 
   //==================== =========================
 
-  fun update(mode: Mode, context: Context? = null): Loger {
-    val flag: Boolean = when (mode) {
-      Mode.APP_SYNC -> {
-        val value = context?.applicationInfo?.flags ?: 0
-        value and ApplicationInfo.FLAG_DEBUGGABLE != 0
-      }
-      Mode.OPEN -> {
-        true
-      }
-      else -> {
-        false
-      }
-
-    }
-    isOpen = flag
-    return this
-  }
+  //==================== =========================
+  //==================== =========================
 
 }

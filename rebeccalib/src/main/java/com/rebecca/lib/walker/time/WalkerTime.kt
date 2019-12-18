@@ -38,7 +38,7 @@ open class WalkerTime(var period: Long = 1000, var delay: Long = 0) : BaseCtr(),
               pause()
             }
           }
-          Loger.show(mTag + "  $count", isDebug)
+          Loger.show(mTag + "  $count", isOpen = isDebug)
         }
     }
   }
