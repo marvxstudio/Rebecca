@@ -4,7 +4,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.demo.R
 import com.example.demo.databinding.WebActivityBinding
 import com.example.demo.router.RouterUrl
-import com.rebecca.lib.tools.Loger
 import com.rebecca.lib.web.BaseWebCtr
 import com.rebecca.lib.web.BaseWebVMActivity
 import com.rebecca.lib.web.IWebCtr
@@ -29,7 +28,6 @@ class WebActivity(override var mLayoutId: Int = R.layout.web_activity) : BaseWeb
   override fun onInitView() {
     super.onInitView()
     webCtr.open(url)
-Loger.
   }
   //========================= main ==================================
 

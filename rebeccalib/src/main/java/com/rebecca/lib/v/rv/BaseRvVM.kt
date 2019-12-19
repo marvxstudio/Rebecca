@@ -6,17 +6,13 @@ import com.rebecca.lib.zbase.vm.BaseVM
 abstract class BaseRvVM : BaseVM() {
 
   //=========================  =================================
-  object Index {
-    const val NONE = -1
-  }
 
-  var index: Int = Index.NONE
+  var index: Int? = null
   //=========================  =================================
   val select by lazy { ObservableBoolean(false) }
   //=========================  =================================
   open var spanPer: Double = 1.0
   //=========================  =================================
-  open var viewType: Int = VHType.ITEM
-
+  open var viewType: Int = 0
   //=========================  =================================
 }

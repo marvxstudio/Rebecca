@@ -1,7 +1,8 @@
 package com.example.demo.list.fragment.rv.header
 
-import com.rebecca.lib.v.rv.BaseRvVM
+import com.example.demo.list.fragment.rv.FunListAdapter.VHType
+import com.example.demo.list.fragment.rv.base.BaseItemVM
 
-class HeaderVM : BaseRvVM() {
+class HeaderVM : BaseItemVM(VHType.HEADER) {
 
 }

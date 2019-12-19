@@ -2,24 +2,24 @@ package com.example.demo.list.fragment
 
 import android.databinding.ObservableArrayList
 import com.example.demo.list.fragment.rv.base.BaseItemVM
+import com.example.demo.list.fragment.rv.footer.FooterVM
+import com.example.demo.list.fragment.rv.header.HeaderVM
 import com.example.demo.list.fragment.rv.item.ItemAddVM
 import com.example.demo.list.fragment.rv.item.ItemRemoveVM
 import com.example.demo.list.fragment.rv.item.ItemStartVM
 import com.example.demo.router.RouterUrl
-import com.rebecca.lib.v.rv.BaseRvVM
-import com.rebecca.lib.v.rv.VHType
 import com.rebecca.lib.zbase.vm.BaseVM
 
 class FunListVM : BaseVM() {
 
   //======================== ===================
-  val funList: ObservableArrayList<BaseRvVM> = ObservableArrayList()
+  val funList: ObservableArrayList<BaseItemVM> = ObservableArrayList()
   //======================== ===================
 
   fun createList() {
     funList.let {
       it.clear()
-      it.add(ItemStartVM(VHType.HEADER))
+      it.add(HeaderVM())
 
       it.add(ItemStartVM().setPath(RouterUrl.App.COMMON).setName("default"))
       it.add(ItemStartVM().setPath(RouterUrl.App.DIALOG).setName("dialog list"))
@@ -49,7 +49,7 @@ class FunListVM : BaseVM() {
 
         it.add(this@apply)
       }
-      it.add(ItemStartVM(VHType.FOOTER))
+      it.add(FooterVM())
     }
   }
 

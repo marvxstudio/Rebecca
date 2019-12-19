@@ -1,9 +1,10 @@
 package com.example.demo.list.fragment.rv.base
 
 import android.databinding.ObservableField
+import com.example.demo.list.fragment.rv.FunListAdapter.VHType
 import com.rebecca.lib.v.rv.BaseRvVM
 
-abstract class BaseItemVM : BaseRvVM() {
+abstract class BaseItemVM(override var viewType: Int = VHType.ITEM) : BaseRvVM() {
 
   val name = ObservableField<String>()
 
