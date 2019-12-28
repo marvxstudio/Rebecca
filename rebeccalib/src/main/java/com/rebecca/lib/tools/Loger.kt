@@ -31,3 +31,8 @@ object Loger : ILoger {
   //==================== =========================
 
 }
+
+fun <T : Any> T.showLog(msg: Any = this, isOpen: Boolean = Loger.isOpen, tag: String = Loger.mTag, mode: ILoger.ModeLog = ILoger.ModeLog.D): T {
+  Loger.show(msg, isOpen, tag, mode)
+  return this
+}
