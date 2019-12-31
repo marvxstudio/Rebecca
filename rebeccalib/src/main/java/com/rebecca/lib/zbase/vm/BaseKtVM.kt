@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 
-open class BaseVM : ViewModel() {
+open class BaseKtVM : ViewModel() {
 
   //=========================  =================================
   open val mTag = javaClass.simpleName

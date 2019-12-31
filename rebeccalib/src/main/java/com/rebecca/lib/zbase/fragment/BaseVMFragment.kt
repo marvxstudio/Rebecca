@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-abstract class BaseVMFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseLazyFragment() {
+abstract class BaseVMFragment<VDB : ViewDataBinding, VM : BaseKtVM> : BaseLazyFragment() {
   //=========================  =================================
   protected lateinit var ui: VDB
   //=========================  =================================

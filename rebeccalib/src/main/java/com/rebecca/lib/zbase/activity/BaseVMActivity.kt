@@ -4,9 +4,9 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseVM> : BaseDMActivity() {
+abstract class BaseVMActivity<VDB : ViewDataBinding, VM : BaseKtVM> : BaseDMActivity() {
   //=========================  =================================
   protected lateinit var ui: VDB
   //=========================  =================================

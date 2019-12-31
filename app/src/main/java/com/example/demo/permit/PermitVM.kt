@@ -3,9 +3,9 @@ package com.example.demo.permit
 import android.Manifest.permission
 import android.databinding.ObservableArrayList
 import com.example.demo.permit.rv.PermitItemVM
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class PermitVM : BaseVM() {
+class PermitVM : BaseKtVM() {
 
   val list = ObservableArrayList<PermitItemVM>()
   var watcher: PermitItemVM.Watcher? = null

@@ -1,9 +1,9 @@
 package com.rebecca.lib.v.rv
 
 import android.databinding.ObservableBoolean
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-abstract class BaseRvVM : BaseVM() {
+abstract class BaseRvVM : BaseKtVM() {
 
   //=========================  =================================
 

@@ -9,9 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rebecca.lib.zbase.ICreate
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseVM> : BaseDMDialogFragment(), ICreate, LifecycleOwner {
+abstract class BaseVMDialogFragment<VDB : ViewDataBinding, VM : BaseKtVM> : BaseDMDialogFragment(), ICreate, LifecycleOwner {
   //=========================  =================================
   protected lateinit var ui: VDB
   //=========================  =================================

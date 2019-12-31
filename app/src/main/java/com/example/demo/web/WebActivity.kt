@@ -7,13 +7,13 @@ import com.example.demo.router.RouterUrl
 import com.rebecca.lib.web.BaseWebCtr
 import com.rebecca.lib.web.BaseWebVMActivity
 import com.rebecca.lib.web.IWebCtr
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
 @Route(path = RouterUrl.App.Web)
-class WebActivity(override var mLayoutId: Int = R.layout.web_activity) : BaseWebVMActivity<WebActivityBinding, BaseVM>() {
+class WebActivity(override var mLayoutId: Int = R.layout.web_activity) : BaseWebVMActivity<WebActivityBinding, BaseKtVM>() {
   //=========================  =================================
 
-  override val classVM: Class<BaseVM> = BaseVM::class.java
+  override val classVM: Class<BaseKtVM> = BaseKtVM::class.java
   private val url by lazy {
     "https://www.cnblogs.com/tinyphp/p/3858997.html"
     "https://www.baidu.com"

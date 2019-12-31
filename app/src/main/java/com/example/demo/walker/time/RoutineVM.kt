@@ -3,9 +3,9 @@ package com.example.demo.walker.time
 import com.rebecca.lib.tools.Loger
 import com.rebecca.lib.walker.event.WalkerEvent
 import com.rebecca.lib.walker.time.WalkerTime
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class RoutineVM : BaseVM() {
+class RoutineVM : BaseKtVM() {
 
   val walkerEvent = WalkerEvent()
   val walkerTime = WalkerTime()

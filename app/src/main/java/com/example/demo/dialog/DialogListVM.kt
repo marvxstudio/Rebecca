@@ -1,6 +1,6 @@
 package com.example.demo.dialog
 
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class DialogListVM : BaseVM() {
+class DialogListVM : BaseKtVM() {
 }

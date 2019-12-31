@@ -7,9 +7,9 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.ObservableField
 import com.rebecca.lib.tools.Loger
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class FontVM : BaseVM() {
+class FontVM : BaseKtVM() {
 
   //================= ===================
   var bean1 = FTest()

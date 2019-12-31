@@ -3,9 +3,9 @@ package com.example.demo.activity
 import android.arch.lifecycle.MutableLiveData
 import com.example.demo.R
 import com.example.demo.bean.RebeccaUser
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class RebeccaVM : BaseVM() {
+class RebeccaVM : BaseKtVM() {
 
     var bean: MutableLiveData<RebeccaUser> = MutableLiveData()
     //lateinit var bean: RebeccaUser

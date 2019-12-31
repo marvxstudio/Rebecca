@@ -8,9 +8,9 @@ import com.example.demo.list.fragment.rv.item.ItemAddVM
 import com.example.demo.list.fragment.rv.item.ItemRemoveVM
 import com.example.demo.list.fragment.rv.item.ItemStartVM
 import com.example.demo.router.RouterUrl
-import com.rebecca.lib.zbase.vm.BaseVM
+import com.rebecca.lib.zbase.vm.BaseKtVM
 
-class FunListVM : BaseVM() {
+class FunListVM : BaseKtVM() {
 
   //======================== ===================
   val funList: ObservableArrayList<BaseItemVM> = ObservableArrayList()
