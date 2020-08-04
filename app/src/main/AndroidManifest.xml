@@ -18,65 +18,7 @@
   android:theme="@style/AppTheme"
   tools:ignore="GoogleAppIndexingWarning">
 
-  <activity android:name=".activity.RebeccaActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
 
-   </intent-filter>
-  </activity>
-
-  <activity android:name=".list.FunListActivity"
-   android:theme="@style/AppThemeSplash">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-
-    <category android:name="android.intent.category.LAUNCHER" />
-   </intent-filter>
-  </activity>
-  <activity android:name=".dialog.DialogListActivity" />
-  <activity android:name=".rx.RxActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-
-   </intent-filter>
-  </activity>
-  <activity android:name=".font.FontActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
-  <activity android:name=".prove.ProveFingerprintActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-
-   </intent-filter>
-  </activity>
-  <activity android:name=".list.fragment.rv.vm.SiActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
-  <activity android:name=".web.WebActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
-
-  <activity android:name=".update.UpdateBeanActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
-  <activity android:name=".walker.time.RoutineActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
-  <activity android:name=".permit.PermitActivity">
-   <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-   </intent-filter>
-  </activity>
  </application>
 
 </manifest>
