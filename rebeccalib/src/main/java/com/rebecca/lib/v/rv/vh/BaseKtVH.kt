@@ -6,5 +6,4 @@ import com.rebecca.lib.tools.ToolsView
 
 abstract class BaseKtVH(vg: ViewGroup, id: Int) : RecyclerView.ViewHolder(ToolsView.inflate(id, vg)) {
 
-  abstract fun updateData(any: Any)
 }
