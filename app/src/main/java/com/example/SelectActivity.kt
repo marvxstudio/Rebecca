@@ -1,4 +1,6 @@
 package com.example
 
-class SelectActivity {
+import android.app.Activity
+
+class SelectActivity : Activity() {
 }

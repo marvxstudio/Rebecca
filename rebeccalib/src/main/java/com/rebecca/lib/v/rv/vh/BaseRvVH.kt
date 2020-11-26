@@ -5,7 +5,7 @@ import android.databinding.ViewDataBinding
 import android.view.ViewGroup
 import com.rebecca.lib.v.rv.BaseRvVM
 
-abstract class BaseRvVH<VDB : ViewDataBinding, VM : BaseRvVM>(vg: ViewGroup, id: Int) : BaseKtVH(vg, id) {
+abstract class BaseRvVH<VDB : ViewDataBinding, VM : BaseRvVM>(vg: ViewGroup, id: Int) : BaseKtVH<VM>(vg, id) {
 
   //=========================  =================================
   protected lateinit var vm: VM
@@ -14,10 +14,6 @@ abstract class BaseRvVH<VDB : ViewDataBinding, VM : BaseRvVM>(vg: ViewGroup, id:
   //=========================  =================================
 
   //=========================  =================================
-
-  fun updateData(vm: VM) {
-
-  }
 
   //========================= init  =================================
 
