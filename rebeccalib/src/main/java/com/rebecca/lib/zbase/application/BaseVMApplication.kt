@@ -8,8 +8,6 @@ import com.rebecca.lib.tools.Loger
 open class BaseVMApplication : Application() {
 
   //=========================  =================================
-  val isAppDebug: Boolean by lazy { ToolsApp.isAppDebug(this) }
-  //=========================  =================================
   open var openRouter = false
   open var openRouterDebug = false
 
@@ -30,7 +28,6 @@ open class BaseVMApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    Loger.isOpen = isAppDebug
     initRouter()
   }
 }
