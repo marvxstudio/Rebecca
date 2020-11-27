@@ -8,57 +8,56 @@ import com.rebecca.lib.dialog.IDialogManager
 
 open class BaseDialogManager<DF : DialogFragment>(var fm: FragmentManager) : OnDismissListener, IDialogManager<DF> {
 
-    val dialogList: ArrayList<DF> by lazy { ArrayList<DF>() }
+  val dialogList: ArrayList<DF> by lazy { ArrayList<DF>() }
 
-    //=================================================
-    private var isLive = true
-    //=================================================
+  //=================================================
+  private var isLive = true
+  //=================================================
 
-    var mDialog: DF? = null
-    //=================================================
+  var mDialog: DF? = null
+  //=================================================
 
-    //=================================================
-    override fun add(dialog: DF) {
-        if (isLive) {
-            onAddDialog(dialog)
-            output()
-        }
+  //=================================================
+  override fun add(dialog: DF) {
+    onAddDialog(dialog)
+
+  }
+
+  protected fun onAddDialog(dialog: DF) {
+    dialogList.add(dialog)
+    if (isLive) {
+      dialog.show(fm, "dialog")
     }
+  }
 
-    protected open fun onAddDialog(dialog: DF) {
-        dialogList.add(dialog)
-    }
+  override fun output() {
+    if (isLive && mDialog == null && dialogList.isNotEmpty()) {
 
-    override fun output() {
-        if (isLive && mDialog == null && dialogList.isNotEmpty()) {
+      mDialog = dialogList.get(0)
+      dialogList.removeAt(0)
 
-            mDialog = dialogList.get(0)
-            dialogList.removeAt(0)
-
-            try {
-                mDialog?.show(fm, "dialog")
-            }
-            catch (e: Exception) {
-                mDialog = null
-                output()
-            }
-        }
-    }
-
-    override fun onDismiss(dialog: DialogInterface?) {
+      try {
+        mDialog?.show(fm, "dialog")
+      }
+      catch (e: Exception) {
         mDialog = null
-        output()
-    }
-
-    override fun onStart() {
-        isLive = true
-        output()
-    }
-
-    override fun onDestroy() {
-        isLive = false
         dialogList.clear()
+        output()
+      }
     }
-    //================================
+  }
+
+  override fun onDismiss(dialog: DialogInterface?) {
+    mDialog = null
+  }
+
+  override fun onStart() {
+    isLive = true
+  }
+
+  override fun onDestroy() {
+    isLive = false
+  }
+  //================================
 
 }
