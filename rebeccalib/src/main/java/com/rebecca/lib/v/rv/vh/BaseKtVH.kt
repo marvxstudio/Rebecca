@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.rebecca.lib.tools.ToolsView
 import com.rebecca.lib.v.rv.BaseRvVM
 
-abstract class BaseKtVH<VM : BaseRvVM>(vg: ViewGroup, id: Int) : RecyclerView.ViewHolder(ToolsView.inflate(id, vg)) {
+abstract class BaseKtVH(vg: ViewGroup, id: Int) : RecyclerView.ViewHolder(ToolsView.inflate(id, vg)) {
 
-  abstract fun updateData(vm: VM)
+  abstract fun updateData(index: Int)
 }

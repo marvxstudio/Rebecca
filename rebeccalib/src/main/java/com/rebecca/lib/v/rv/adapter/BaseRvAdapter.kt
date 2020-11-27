@@ -1,30 +1,23 @@
 package com.rebecca.lib.v.rv.adapter
 
 import android.content.Context
-import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
-import com.rebecca.lib.v.rv.BaseListWatcher
 import com.rebecca.lib.v.rv.BaseRvVM
 import com.rebecca.lib.v.rv.vh.BaseKtVH
 
-abstract class BaseRvAdapter<VM : BaseRvVM>(val list: ArrayList<VM>, private val count: Int = list.size) : Adapter<BaseKtVH<VM>>() {
+abstract class BaseRvAdapter<VM : BaseRvVM>(val list: ArrayList<VM>, private val count: Int = list.size) : Adapter<BaseKtVH>() {
 
   //=====================  ==========================
 
   //=====================  ==========================
 
-  val mHeader by lazy { ObservableField<VM>() }
-  val mFooter by lazy { ObservableField<VM>() }
+  abstract val mHeader: VM
+  abstract val mFooter: VM
 
   //=====================  ==========================
   //=====================  ==========================
-
-  protected open fun onCreateListWatcher(): BaseListWatcher<VM> {
-    return BaseListWatcher(this)
-  }
 
   //=====================  ==========================
   open fun updateHeader(vm: VM, isNotify: Boolean = true, position: Int = 0) {
@@ -38,8 +31,8 @@ abstract class BaseRvAdapter<VM : BaseRvVM>(val list: ArrayList<VM>, private val
 
   //===================== init ========================
 
-  override fun onBindViewHolder(holder: BaseKtVH<VM>, position: Int) {
-    holder.updateData(list.get(position))
+  override fun onBindViewHolder(holder: BaseKtVH, position: Int) {
+    holder.updateData(position)
   }
 
   override fun getItemViewType(position: Int): Int {
@@ -47,12 +40,12 @@ abstract class BaseRvAdapter<VM : BaseRvVM>(val list: ArrayList<VM>, private val
       return 0
     }
     if (list.get(position).viewType > 0 && list.get(position).select.get() == true) {
-      return list.get(position).index ?: 0
+      return list.get(position).viewType ?: 0
     }
     else {
       return 0
     }
-    return list.get(position).viewType
+    return list.get(position).index ?: 0
   }
 
   override fun getItemCount(): Int = count

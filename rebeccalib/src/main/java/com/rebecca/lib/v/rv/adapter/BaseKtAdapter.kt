@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView.Adapter
 import com.rebecca.lib.v.rv.BaseRvVM
 import com.rebecca.lib.v.rv.vh.BaseKtVH
 
-abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ArrayList<VM>) : Adapter<BaseKtVH<VM>>() {
+abstract class BaseKtAdapter<VM : BaseRvVM>(protected val list: ArrayList<VM>) : Adapter<BaseKtVH>() {
 
   //================================================
 
